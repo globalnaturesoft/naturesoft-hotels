@@ -1,6 +1,21 @@
-<h1>Editing Bed Type</h1>
+<% title t(:edit_bed_type) + ": " + @bed_type.name %>
 
-<%= render 'form', bed_type: @bed_type %>
+<!-- Horizontal form options -->
+<div class="row">
+    <div class="col-md-12">
 
-<%= link_to 'Show', @bed_type %> |
-<%= link_to 'Back', bed_types_path %>
+        <!-- Basic layout-->
+        <div class="panel panel-flat">
+            <div class="panel-heading">
+                <h5 class="panel-title"><%= t(:edit_bed_type) %></h5>
+            </div>
+            
+            <div class="panel-body">
+                <%= render 'form', bed_type: @bed_type %>
+            </div>
+
+        </div>
+        <!-- /basic layout -->
+    </div>
+</div>
+<!-- /horizontal form options -->

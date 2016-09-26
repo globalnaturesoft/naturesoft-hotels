@@ -1,17 +1,35 @@
-<%= form_for(bed_type) do |f| %>
-  <% if bed_type.errors.any? %>
+<% if bed_type.errors.any? %>
+  <div class="alert alert-warning alert-bordered">
+    <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
     <div id="error_explanation">
-      <h2><%= pluralize(bed_type.errors.count, "error") %> prohibited this bed_type from being saved:</h2>
-
+      <h2><%= pluralize(bed_type.errors.count, "error") %> prohibited this bed type from being saved:</h2>
+  
       <ul>
       <% bed_type.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
   </div>
 <% end %>
+
+<div class="panel panel-flat">
+  
+  <div class="panel-body">
+
+    <%= form_for([naturesoft_hotels, :admin, bed_type], html: {class: "form-horizontal validate", multipart: true}) do |f| %>
+        
+        <div class="form-group">
+            <label class="col-md-2 control-label" ><%= t(:name) %> <span class='text-danger'>*</span></label>
+            <div class="col-md-10">
+                <%= f.text_field :name, class: "form-control required" %>
+            </div>
+        </div>
+    
+        <div class="text-right">
+            <%= button_tag "#{t(:save)} <i class=\"icon-plus22 position-right\"></i>".html_safe, class: "btn btn-primary"%>
+        </div>
+        
+    <% end %>
+  </div>
+</div>
