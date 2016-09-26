@@ -2,7 +2,7 @@ module Naturesoft::Hotels
   class RoomType < ApplicationRecord
     belongs_to :user
     
-    ef self.sort_by
+    def self.sort_by
       [
         ["Name","naturesoft_hotels_room_types.name"],
         ["Created At","naturesoft_hotels_room_types.created_at"]
