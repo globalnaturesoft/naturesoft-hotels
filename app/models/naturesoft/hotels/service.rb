@@ -34,7 +34,7 @@ module Naturesoft::Hotels
       
       # for sorting
       sort_by = params[:sort_by].present? ? params[:sort_by] : "naturesoft_hotels_services.name"
-      sort_orders = params[:sort_orders].present? ? params[:sort_orders] : "asc"
+      sort_orders = params[:sort_orders].present? ? params[:sort_orders] : "desc"
       records = records.order("#{sort_by} #{sort_orders}")
       
       return records

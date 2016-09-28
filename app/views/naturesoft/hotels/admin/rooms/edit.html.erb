@@ -1,4 +1,4 @@
-<% title t(:edit_hotel) + ": " + @hotel.name %>
+<% title t(:edit_room) + ": " + @room.name %>
 
 <!-- Horizontal form options -->
 <div class="row">
@@ -7,11 +7,11 @@
         <!-- Basic layout-->
         <div class="panel panel-flat">
             <div class="panel-heading">
-                <h5 class="panel-title"><%= t(:edit_hotel) %></h5>
+                <h5 class="panel-title"><%= t(:edit_room) %></h5>
             </div>
             
             <div class="panel-body">
-                <%= render 'form', hotel: @hotel %>
+                <%= render 'form', room: @room %>
             </div>
 
         </div>

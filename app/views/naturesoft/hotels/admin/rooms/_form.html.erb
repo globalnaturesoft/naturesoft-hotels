@@ -1,0 +1,97 @@
+<% if room.errors.any? %>
+  <div class="alert alert-warning alert-bordered">
+    <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+    <div id="error_explanation">
+      <h2><%= pluralize(room.errors.count, "error") %> prohibited this room from being saved:</h2>
+  
+      <ul>
+      <% room.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<%= form_for([naturesoft_hotels, :admin, room], html: {class: "form-horizontal validate", multipart: true}) do |f| %>
+    <div class="tabbable tab-content-bordered">
+        <ul class="nav nav-tabs bg-primary">
+            <li class="active"><a href="#control-tab1" data-toggle="tab"><%= t(:infomations) %></a></li>
+            <li><a href="#control-tab2" data-toggle="tab"><%= t(:description) %> </a></li>
+            <li><a href="#control-tab3" data-toggle="tab"><%= t(:services) %> </a></li>
+            <li><a href="#control-tab4" data-toggle="tab"><%= t(:images) %> </a></li>
+        </ul>
+        <div class="tab-content">
+          
+            <div class="tab-pane has-padding active" id="control-tab1">
+              
+                <div class="form-group">
+                    <label class="col-md-2 control-label" ><%= t(:code) %> <span class='text-danger'>*</span></label>
+                    <div class="col-md-10">
+                        <%= f.text_field :code, class: "form-control" %>
+                    </div>
+                </div>
+                    
+                <div class="form-group">
+                    <label class="col-md-2 control-label" ><%= t(:name) %> <span class='text-danger'>*</span></label>
+                    <div class="col-md-10">
+                        <%= f.text_field :name, class: "form-control required" %>
+                    </div>
+                </div>
+                    
+                <div class="form-group">
+                  <label class="col-md-2 control-label" ><%= t(:manufacturer) %> <span class='text-danger'>*</span></label>
+                  <div class="col-md-10">
+                    <div class="input-group">
+                        <% selected = options_for_select([[room.hotel.name, room.hotel_id]], room.hotel_id) if room.hotel.present? %>
+                        <%= select_tag("room[hotel_id]",
+                          selected,
+                          {
+                            class: "select2-ajax required",
+                            include_blank: "none",
+                            "data-url": select2_admin_hotels_path,
+                          }
+                        ) %>
+                        <span class="input-group-btn">
+                          <a class="btn btn-info" href="<%= naturesoft_hotels.new_admin_hotel_path %>"><i class="icon-plus2"></i></a>
+                        </span>
+                    </div>
+                  </div>
+                </div>
+            </div>
+                
+            <div class="tab-pane has-padding" id="control-tab2">
+              <div class="form-group">
+                <div class="col-md-12">
+                  <%= f.text_area :description, rows: "4", cols: "4", class: "editor" %>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane has-padding" id="control-tab3"></div>
+            <div class="tab-pane has-padding addable-form" data-sample="image-form" id="control-tab4">
+              <div class="addable-container">
+                <% room.room_images.each_with_index do |image,index| %>
+                  <%= render "image_form", item: image, index: index %>
+                <% end %>
+              </div>
+              <div class="row">
+                <div class="col-md-2">
+                  <div class="text-left">
+                    <a href="#add" class="btn btn-info addable-add"><%= t(:add_image) %> <i class="icon-plus2 position-center"></i></a>
+                  </div>
+                </div>
+              </div>  
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="text-right">
+        <%= button_tag "#{t(:save)} <i class=\"icon-plus22 position-right\"></i>".html_safe, class: "btn btn-primary"%>
+    </div>
+<% end %>
+
+<!-- thumbnail size sample form -->
+<div class="image-form hide">
+  <%= render 'image_form', item: Naturesoft::Hotels::RoomImage.new, index: "<<index>>" %>
+</div>
+<!--/thumbnail size sample form -->

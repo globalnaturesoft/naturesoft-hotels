@@ -9,12 +9,13 @@ module Naturesoft
         
         # add top breadcrumb
         def default_breadcrumb
+          add_breadcrumb "Hotel", naturesoft_hotels.admin_services_path
           add_breadcrumb "Service", naturesoft_hotels.admin_services_path
         end
     
         # GET /services
         def index
-          @services = Service.search(params).paginate(:page => params[:page], :per_page => 10)
+          @services = Service.search(params).paginate(:page => params[:page], :per_page => Naturesoft::Option.get("hotels", "services_items_per_page"))
         end
     
         # GET /services/1

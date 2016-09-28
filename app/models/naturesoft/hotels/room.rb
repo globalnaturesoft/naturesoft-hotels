@@ -1,11 +1,16 @@
 module Naturesoft::Hotels
-  class BedType < ApplicationRecord
+  class Room < ApplicationRecord
     belongs_to :user
+    belongs_to :hotel
+    has_many :room_images, dependent: :destroy, :inverse_of => :room
+    accepts_nested_attributes_for :room_images,
+				:reject_if => lambda { |a| a[:image].blank? && a[:id].blank? },
+				:allow_destroy => true
     
     def self.sort_by
       [
-        ["Name","naturesoft_hotels_bed_types.name"],
-        ["Created At","naturesoft_hotels_bed_types.created_at"]
+        ["Name","naturesoft_hotels_rooms.name"],
+        ["Created At","naturesoft_hotels_rooms.created_at"]
       ]
     end
     
@@ -23,12 +28,12 @@ module Naturesoft::Hotels
       #Search keyword filter
       if params[:keyword].present?
         params[:keyword].split(" ").each do |k|
-          records = records.where("LOWER(CONCAT(naturesoft_hotels_bed_types.name)) LIKE ?", "%#{k.strip.downcase}%") if k.strip.present?
+          records = records.where("LOWER(CONCAT(naturesoft_hotels_rooms.name)) LIKE ?", "%#{k.strip.downcase}%") if k.strip.present?
         end
       end
       
       # for sorting
-      sort_by = params[:sort_by].present? ? params[:sort_by] : "naturesoft_hotels_bed_types.name"
+      sort_by = params[:sort_by].present? ? params[:sort_by] : "naturesoft_hotels_rooms.name"
       sort_orders = params[:sort_orders].present? ? params[:sort_orders] : "desc"
       records = records.order("#{sort_by} #{sort_orders}")
       

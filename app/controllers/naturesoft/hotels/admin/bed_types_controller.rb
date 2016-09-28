@@ -13,7 +13,7 @@ module Naturesoft
         
         # GET /bed_types
         def index
-          @bed_types = BedType.search(params).paginate(:page => params[:page], :per_page => 10)
+          @bed_types = BedType.search(params).paginate(:page => params[:page], :per_page => Naturesoft::Option.get("hotels", "bed_types_items_per_page"))
         end
     
         # GET /bed_types/1
@@ -23,10 +23,12 @@ module Naturesoft
         # GET /bed_types/new
         def new
           @bed_type = BedType.new
+          add_breadcrumb "New Bed Type", nil,  class: "active"
         end
     
         # GET /bed_types/1/edit
         def edit
+          add_breadcrumb "Edit Bed Type", nil,  class: "active"
         end
     
         # POST /bed_types
@@ -71,6 +73,11 @@ module Naturesoft
           @bed_types = BedType.where(id: params[:ids].split(","))
           @bed_types.destroy_all
           render text: 'Bed types(s) was successfully destroyed.'
+        end
+        
+        # GET /bed_types/select2
+        def select2
+          render json: BedType.select2(params)
         end
     
         private

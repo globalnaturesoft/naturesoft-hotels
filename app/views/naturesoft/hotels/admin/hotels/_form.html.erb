@@ -1,0 +1,118 @@
+<% if hotel.errors.any? %>
+  <div class="alert alert-warning alert-bordered">
+    <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+    <div id="error_explanation">
+      <h2><%= pluralize(hotel.errors.count, "error") %> prohibited this hotel from being saved:</h2>
+  
+      <ul>
+      <% hotel.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<%= form_for([naturesoft_hotels, :admin, hotel], html: {class: "form-horizontal validate", multipart: true}) do |f| %>
+    <div class="tabbable tab-content-bordered">
+        <ul class="nav nav-tabs bg-primary">
+            <li class="active"><a href="#control-tab1" data-toggle="tab"><%= t(:infomations) %></a></li>
+            <li><a href="#control-tab2" data-toggle="tab"><%= t(:description) %> </a></li>
+            <li><a href="#control-tab3" data-toggle="tab"><%= t(:hotel_facilities) %> </a></li>
+            <li><a href="#control-tab4" data-toggle="tab"><%= t(:hotel_rooms) %> </a></li>
+            <li><a href="#control-tab5" data-toggle="tab"><%= t(:hotel_images) %> </a></li>
+        </ul>
+        <div class="tab-content">
+          
+            <div class="tab-pane has-padding active" id="control-tab1">
+                <div class="form-group">
+                    <label class="col-md-2 control-label" ><%= t(:name) %> <span class='text-danger'>*</span></label>
+                    <div class="col-md-10">
+                        <%= f.text_field :name, class: "form-control required" %>
+                    </div>
+                </div>
+                    
+                <div class="form-group">
+                    <label class="col-md-2 control-label" ><%= t(:address) %> <span class='text-danger'>*</span></label>
+                    <div class="col-md-10">
+                        <%= f.text_field :address, class: "form-control" %>
+                    </div>
+                </div>
+                    
+                <div class="form-group">
+                    <label class="col-md-2 control-label" ><%= t(:position) %> <span class='text-danger'>*</span></label>
+                    <div class="col-md-10">
+                        <%= f.text_field :position, class: "form-control" %>
+                    </div>
+                </div>
+                    
+                <div class="form-group">
+                    <label class="col-md-2 control-label" ><%= t(:from_per_night) %> <span class='text-danger'>*</span></label>
+                    <div class="col-md-10">
+                        <%= f.text_field :from_per_night, class: "form-control number_input" %>
+                    </div>
+                </div>
+                    
+                <div class="form-group">
+                    <label class="col-md-2 control-label" ><%= t(:from_per_night) %> <span class='text-danger'>*</span></label>
+                    <div class="col-md-10">
+                        <label class="radio-inline">
+                          <input type="radio" class="styled-hotel-star" name="hotel[star]" value="1" <% if !hotel.star.nil? %><% if hotel.star == 1 %>checked="checked"<% end %><% else %>checked="checked"<% end %>>
+                          1 Sao
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" class="styled-hotel-star" name="hotel[star]" value="2"<% if !hotel.star.nil? %><% if hotel.star == 2 %>checked="checked"<% end %><% end %>>
+                          2 Sao
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" class="styled-hotel-star" name="hotel[star]" value="3"<% if !hotel.star.nil? %><% if hotel.star == 3 %>checked="checked"<% end %><% end %>>
+                          3 Sao
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" class="styled-hotel-star" name="hotel[star]" value="4"<% if !hotel.star.nil? %><% if hotel.star == 4 %>checked="checked"<% end %><% end %>>
+                          4 Sao
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" class="styled-hotel-star" name="hotel[star]" value="5"<% if !hotel.star.nil? %><% if hotel.star == 5 %>checked="checked"<% end %><% end %>>
+                          5 Sao
+                        </label>
+                    </div>
+                </div>
+            </div>
+                
+            <div class="tab-pane has-padding" id="control-tab2">
+              <div class="form-group">
+                <div class="col-md-12">
+                  <%= f.text_area :description, rows: "4", cols: "4", class: "editor" %>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane has-padding" id="control-tab3"></div>
+            <div class="tab-pane has-padding" id="control-tab4"></div>
+            <div class="tab-pane has-padding addable-form" data-sample="image-form" id="control-tab5">
+              <div class="addable-container">
+                <% hotel.hotel_images.each_with_index do |image,index| %>
+                  <%= render "image_form", item: image, index: index %>
+                <% end %>
+              </div>
+              <div class="row">
+                <div class="col-md-2">
+                  <div class="text-left">
+                    <a href="#add" class="btn btn-info addable-add"><%= t(:add_image) %> <i class="icon-plus2 position-center"></i></a>
+                  </div>
+                </div>
+              </div>  
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="text-right">
+        <%= button_tag "#{t(:save)} <i class=\"icon-plus22 position-right\"></i>".html_safe, class: "btn btn-primary"%>
+    </div>
+<% end %>
+
+<!-- thumbnail size sample form -->
+<div class="image-form hide">
+  <%= render 'image_form', item: Naturesoft::Hotels::HotelImage.new, index: "<<index>>" %>
+</div>
+<!--/thumbnail size sample form -->
