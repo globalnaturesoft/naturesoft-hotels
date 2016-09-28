@@ -1,6 +1,8 @@
 Naturesoft::Option.class_eval do
   @hotels = {
     "hotels_items_per_page" => 10,
+    "rooms_items_per_page" => 10,
+    "facilities_items_per_page" => 10,
     "services_items_per_page" => 10,
     "bed_types_items_per_page" => 10,
     "room_types_items_per_page" => 10,

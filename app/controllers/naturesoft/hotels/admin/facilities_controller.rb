@@ -13,7 +13,7 @@ module Naturesoft
         
         # GET /facilities
         def index
-          @facilities = Facility.search(params).paginate(:page => params[:page], :per_page => 10)
+          @facilities = Facility.search(params).paginate(:page => params[:page], :per_page => Naturesoft::Option.get("hotels", "facilities_items_per_page"))
         end
     
         # GET /facilities/1

@@ -13,7 +13,7 @@ module Naturesoft
         
         # GET /rooms
         def index
-          @rooms = Room.search(params).paginate(:page => params[:page], :per_page => 10)
+          @rooms = Room.search(params).paginate(:page => params[:page], :per_page => Naturesoft::Option.get("hotels", "rooms_items_per_page"))
         end
     
         # GET /rooms/1

@@ -2,6 +2,7 @@ module Naturesoft::Hotels
   class Hotel < ApplicationRecord
 		mount_uploader :image, Naturesoft::Hotels::HotelUploader
     belongs_to :user
+    has_many :rooms, dependent: :destroy, :inverse_of => :hotel
     has_many :hotel_images, dependent: :destroy, :inverse_of => :hotel
     accepts_nested_attributes_for :hotel_images,
 				:reject_if => lambda { |a| a[:image].blank? && a[:id].blank? },

@@ -6,14 +6,14 @@ module Naturesoft::Hotels
     
     def self.sort_by
       [
-        ["Name","naturesoft_hotels_services.name"],
-        ["Created At","naturesoft_hotels_services.created_at"]
+				["Created At","naturesoft_hotels_services.created_at"],
+        ["Name","naturesoft_hotels_services.name"]
       ]
     end
     def self.sort_orders
       [
-        ["ASC","asc"],
-        ["DESC","desc"]
+				["DESC","desc"],
+				["ASC","asc"]
       ]
     end
     
@@ -34,7 +34,7 @@ module Naturesoft::Hotels
       
       # for sorting
       sort_by = params[:sort_by].present? ? params[:sort_by] : "naturesoft_hotels_services.name"
-      sort_orders = params[:sort_orders].present? ? params[:sort_orders] : "desc"
+      sort_orders = params[:sort_orders].present? ? params[:sort_orders] : "asc"
       records = records.order("#{sort_by} #{sort_orders}")
       
       return records

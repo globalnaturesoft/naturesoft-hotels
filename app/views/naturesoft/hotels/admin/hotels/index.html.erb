@@ -74,7 +74,10 @@
                                 />
                             </td>
                             <td><a href="<%= naturesoft_hotels.edit_admin_hotel_path(item) %>"><%= image_tag image_src(item.image.system), class: "img-rounded img-preview" %></a></td>
-                            <td class="kq_search"><strong><%= item.name %></strong></td>
+                            <td class="kq_search">
+                                <strong><%= item.name %></strong><br>
+                                <a href="<%= naturesoft_hotels.admin_rooms_path %>"><span class="label bg-teal-600">has <%= item.rooms.count %> rooms</span></a>
+                            </td>
                             <td><%= item.created_at.strftime("%d/%m/%Y") %></td>
                             <td><%= display_status(item.status) %></td>
                             <td class="text-center">
