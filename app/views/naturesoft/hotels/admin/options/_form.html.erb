@@ -120,6 +120,16 @@
             </div>          
           </div>
         </div>
+        <div class="row">
+          <div class="col-sm-3 col-md-3">
+            <div class="form-group">
+              <label class="control-label" ><%= t(:labels_items_per_page) %> <span class='text-danger'>*</span></label>
+              <div class="">
+                <%= text_field_tag "options[hotels][labels_items_per_page]", @options["hotels"]["labels_items_per_page"], class: "form-control number_input" %>
+              </div>
+            </div>          
+          </div>
+        </div>
       
         <div class="text-right">
           <%= button_tag "#{t(:save)}<i class=\"icon-check position-right\"></i>".html_safe, class: "btn btn-primary"%>

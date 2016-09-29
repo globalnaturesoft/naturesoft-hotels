@@ -8,6 +8,7 @@ Naturesoft::Option.class_eval do
     "room_types_items_per_page" => 10,
     "events_items_per_page" => 10,
     "event_categories_items_per_page" => 10,
+    "labels_items_per_page" => 10,
     "thumbnails" => {
       "0" => {
         "code" => "big",
