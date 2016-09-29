@@ -1,8 +1,17 @@
 <li>
   <a href="#"><i class="icon-office"></i> <span><%= t(:hotel) %></span></a>
   <ul>
+      <li<% if["naturesoft/products/admin/hotels"].include?(params[:controller]) %>class="active"<% end %>>
+        <%= link_to 'Hotels', naturesoft_hotels.admin_hotels_path %>
+      </li>
+      <li<% if["naturesoft/products/admin/rooms"].include?(params[:controller]) %>class="active"<% end %>>
+        <%= link_to 'Rooms', naturesoft_hotels.admin_rooms_path %>
+      </li>
       <li<% if["naturesoft/products/admin/services"].include?(params[:controller]) %>class="active"<% end %>>
         <%= link_to 'Services', naturesoft_hotels.admin_services_path %>
+      </li>
+      <li<% if["naturesoft/products/admin/facilities"].include?(params[:controller]) %>class="active"<% end %>>
+        <%= link_to 'Facilities', naturesoft_hotels.admin_facilities_path %>
       </li>
       <li<% if["naturesoft/products/admin/room_types"].include?(params[:controller]) %>class="active"<% end %>>
         <%= link_to 'Room Types', naturesoft_hotels.admin_room_types_path %>

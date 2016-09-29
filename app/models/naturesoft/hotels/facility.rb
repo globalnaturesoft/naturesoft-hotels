@@ -1,11 +1,10 @@
 module Naturesoft::Hotels
-  class BedType < ApplicationRecord
+  class Facility < ApplicationRecord
     belongs_to :user
-    
     def self.sort_by
       [
-        ["Name","naturesoft_hotels_bed_types.name"],
-        ["Created At","naturesoft_hotels_bed_types.created_at"]
+        ["Name","naturesoft_hotels_facilities.name"],
+        ["Created At","naturesoft_hotels_facilities.created_at"]
       ]
     end
     
@@ -23,12 +22,12 @@ module Naturesoft::Hotels
       #Search keyword filter
       if params[:keyword].present?
         params[:keyword].split(" ").each do |k|
-          records = records.where("LOWER(CONCAT(naturesoft_hotels_bed_types.name)) LIKE ?", "%#{k.strip.downcase}%") if k.strip.present?
+          records = records.where("LOWER(CONCAT(naturesoft_hotels_facilities.name)) LIKE ?", "%#{k.strip.downcase}%") if k.strip.present?
         end
       end
       
       # for sorting
-      sort_by = params[:sort_by].present? ? params[:sort_by] : "naturesoft_hotels_bed_types.name"
+      sort_by = params[:sort_by].present? ? params[:sort_by] : "naturesoft_hotels_facilities.name"
       sort_orders = params[:sort_orders].present? ? params[:sort_orders] : "desc"
       records = records.order("#{sort_by} #{sort_orders}")
       

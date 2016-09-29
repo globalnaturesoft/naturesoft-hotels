@@ -13,7 +13,7 @@ module Naturesoft
         
         # GET /room_types
         def index
-          @room_types = RoomType.search(params).paginate(:page => params[:page], :per_page => 10)
+          @room_types = RoomType.search(params).paginate(:page => params[:page], :per_page => Naturesoft::Option.get("hotels", "room_types_items_per_page"))
         end
     
         # GET /room_types/1
@@ -23,10 +23,12 @@ module Naturesoft
         # GET /room_types/new
         def new
           @room_type = RoomType.new
+          add_breadcrumb "New Room Type", nil,  class: "active"
         end
     
         # GET /room_types/1/edit
         def edit
+          add_breadcrumb "Edit Room Type", nil,  class: "active"
         end
     
         # POST /room_types
@@ -71,6 +73,11 @@ module Naturesoft
           @room_types = RoomType.where(id: params[:ids].split(","))
           @room_types.destroy_all
           render text: 'Room types(s) was successfully destroyed.'
+        end
+        
+        # GET /room_types/select2
+        def select2
+          render json: RoomType.select2(params)
         end
     
         private
