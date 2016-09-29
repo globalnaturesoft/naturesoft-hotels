@@ -14,7 +14,7 @@ module Naturesoft
     
         # GET /event_categories
         def index
-          @event_categories = EventCategory.search(params).paginate(:page => params[:page], :per_page => 10)
+          @event_categories = EventCategory.search(params).paginate(:page => params[:page], :per_page => Naturesoft::Option.get("hotels", "event_categories_items_per_page"))
         end
     
         # GET /event_categories/1
