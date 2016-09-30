@@ -19,5 +19,14 @@
       <li<% if["naturesoft/products/admin/bed_types"].include?(params[:controller]) %>class="active"<% end %>>
         <%= link_to 'Bed Types', naturesoft_hotels.admin_bed_types_path %>
       </li>
+      <li<% if["naturesoft/products/admin/events"].include?(params[:controller]) %>class="active"<% end %>>
+        <%= link_to 'Events', naturesoft_hotels.admin_events_path %>
+      </li>
+      <li<% if["naturesoft/products/admin/event_categories"].include?(params[:controller]) %>class="active"<% end %>>
+        <%= link_to 'Event Categories', naturesoft_hotels.admin_event_categories_path %>
+      </li>
+      <li<% if["naturesoft/products/admin/labels"].include?(params[:controller]) %>class="active"<% end %>>
+        <%= link_to 'Labels', naturesoft_hotels.admin_labels_path %>
+      </li>
   </ul>
 </li>

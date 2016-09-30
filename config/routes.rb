@@ -48,5 +48,28 @@ Naturesoft::Hotels::Engine.routes.draw do
         get "select2"
       end
     end
+    resources :events do
+      collection do
+        put "enable"
+        put "disable"
+        delete "delete"
+      end
+    end
+    resources :event_categories do
+      collection do
+        put "enable"
+        put "disable"
+        delete "delete"
+        get "select2"
+      end
+    end
+    resources :labels do
+      collection do
+        put "enable"
+        put "disable"
+        delete "delete"
+        get "select2"
+      end
+    end
   end
 end
