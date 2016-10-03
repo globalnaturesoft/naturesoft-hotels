@@ -28,5 +28,8 @@
       <li<% if["naturesoft/products/admin/labels"].include?(params[:controller]) %>class="active"<% end %>>
         <%= link_to 'Labels', naturesoft_hotels.admin_labels_path %>
       </li>
+      <li<% if["naturesoft/products/admin/hotel_types"].include?(params[:controller]) %>class="active"<% end %>>
+        <%= link_to 'Hotel Types', naturesoft_hotels.admin_hotel_types_path %>
+      </li>
   </ul>
 </li>
