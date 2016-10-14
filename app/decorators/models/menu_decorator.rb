@@ -16,6 +16,14 @@ if Naturesoft::Core.available?("menus")
         "params" => {
         
         }
+      },
+      "events" => {
+        "label" => "Events",
+        "controller" => "/naturesoft/hotels/events",
+        "action" => "hotel_listing",
+        "params" => {
+        
+        }
       }
     }
   end
