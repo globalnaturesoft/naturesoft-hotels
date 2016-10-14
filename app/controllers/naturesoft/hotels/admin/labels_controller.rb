@@ -1,5 +1,3 @@
-require_dependency "naturesoft/application_controller"
-
 module Naturesoft
   module Hotels
     module Admin
