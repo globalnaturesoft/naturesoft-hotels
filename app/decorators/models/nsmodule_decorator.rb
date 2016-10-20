@@ -7,5 +7,12 @@ Naturesoft::Nsmodule.class_eval do
         "style" => "default"
       }
     },
+    "favourite_list" => {
+      "label" => "Favourites List",
+      "options" => {
+        "description" => nil,
+        "style" => "default"
+      }
+    },
   }
 end

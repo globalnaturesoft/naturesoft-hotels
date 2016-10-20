@@ -60,5 +60,15 @@ module Naturesoft::Hotels
 			options += items.map { |c| {"id" => c.id, "text" => c.name} }
 			result = {"items" => options}
 		end
+    
+    # get all products
+    def self.get_all_hotels
+			self.where(status: "active")
+		end
+    
+    # get favourite hotels
+    def self.get_favourite_hotels(params)
+			self.get_all_hotels.limit(6)
+		end
   end
 end
