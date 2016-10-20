@@ -2,10 +2,10 @@ module Naturesoft::Hotels
   class Label < ApplicationRecord
     include Naturesoft::CustomOrder
     mount_uploader :icon, Naturesoft::Hotels::LabelUploader
-    
     validates :name, presence: true
 		
     belongs_to :user
+    has_and_belongs_to_many :hotels, :join_table => 'naturesoft_hotels_hotels_labels'
     
     def self.sort_by
       [

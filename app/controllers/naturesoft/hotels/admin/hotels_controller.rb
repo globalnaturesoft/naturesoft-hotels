@@ -45,6 +45,10 @@ module Naturesoft
     
         # PATCH/PUT /hotels/1
         def update
+          @hotel.areas.clear
+          @hotel.labels.clear
+          @hotel.facilities.clear
+          
           if @hotel.update(hotel_params)
             redirect_to naturesoft_hotels.edit_admin_hotel_path(@hotel.id), notice: 'Hotel was successfully updated.'
           else
@@ -88,7 +92,7 @@ module Naturesoft
     
           # Only allow a trusted parameter "white list" through.
           def hotel_params
-            params.fetch(:hotel, {}).permit(:image, :name, :address, :position, :description, :from_per_night, :star, hotel_images_attributes: [:id, :image, :is_main, :_destroy])
+            params.fetch(:hotel, {}).permit(:image, :name, :address, :position, :description, :from_per_night, :star, :meta_keywords, :meta_description, :hotel_type_id, :longtitude, :latitude, :terms_1, :terms_2, :terms_3, :terms_4, :terms_5, { area_ids:[] }, { label_ids:[] }, { facility_ids:[] }, hotel_images_attributes: [:id, :image, :is_main, :_destroy])
           end
       end
     end

@@ -45,6 +45,8 @@ module Naturesoft
     
         # PATCH/PUT /rooms/1
         def update
+          @room.services.clear
+          
           if @room.update(room_params)
             redirect_to naturesoft_hotels.edit_admin_room_path(@room.id), notice: 'Room was successfully updated.'
           else
@@ -88,7 +90,7 @@ module Naturesoft
     
           # Only allow a trusted parameter "white list" through.
           def room_params
-            params.fetch(:room, {}).permit(:name, :code, :description, :hotel_id, room_images_attributes: [:id, :image, :_destroy])
+            params.fetch(:room, {}).permit(:name, :code, :description, :hotel_id, :price, :time_line, { service_ids:[] }, room_images_attributes: [:id, :image, :_destroy])
           end
       end
     end

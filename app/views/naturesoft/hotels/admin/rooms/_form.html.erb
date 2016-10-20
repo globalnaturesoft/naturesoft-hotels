@@ -37,6 +37,20 @@
                         <%= f.text_field :name, class: "form-control required" %>
                     </div>
                 </div>
+                  
+                <div class="form-group">
+                    <label class="col-md-2 control-label" ><%= t(:price) %></label>
+                    <div class="col-md-10">
+                        <%= f.text_field :price, class: "form-control number_input" %>
+                    </div>
+                </div>
+                    
+                <div class="form-group">
+                    <label class="col-md-2 control-label" ><%= t(:time_line) %></label>
+                    <div class="col-md-10">
+                        <%= f.text_field :time_line, class: "form-control" %>
+                    </div>
+                </div>
                     
                 <div class="form-group">
                   <label class="col-md-2 control-label" ><%= t(:hotel) %> <span class='text-danger'>*</span></label>
@@ -72,7 +86,7 @@
                   <div class="col-md-6">
                     <div class="checkbox">
                       <label>
-                        <input type="checkbox" class="room-services">
+                        <input<%= " checked" if room.services.include?(item) %> id="room_service_ids_" name="room[service_ids][]" value="<%= item.id %>" type="checkbox" class="room-services">
                         <%= item.name %>
                       </label>
                     </div>
