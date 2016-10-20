@@ -6,6 +6,7 @@ module Naturesoft::Hotels
     accepts_nested_attributes_for :room_images,
 				:reject_if => lambda { |a| a[:image].blank? && a[:id].blank? },
 				:allow_destroy => true
+		has_and_belongs_to_many :services
     
     def self.sort_by
       [

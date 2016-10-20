@@ -1,6 +1,7 @@
 module Naturesoft::Hotels
   class HotelType < ApplicationRecord
     belongs_to :user
+    has_many :hotels
     
     def self.sort_by
       [

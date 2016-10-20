@@ -1,8 +1,9 @@
 module Naturesoft::Hotels
   class Service < ApplicationRecord
+		validates :name, presence: true
+		
     belongs_to :user
-    
-    validates :name, presence: true
+    has_and_belongs_to_many :rooms
     
     def self.sort_by
       [
