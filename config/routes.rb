@@ -79,5 +79,12 @@ Naturesoft::Hotels::Engine.routes.draw do
         get "select2"
       end
     end
+    resources :quick_orders do
+      collection do
+        put "enable"
+        put "disable"
+        delete "delete"
+      end
+    end
   end
 end

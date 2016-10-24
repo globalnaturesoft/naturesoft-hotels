@@ -1,0 +1,25 @@
+<% title "View detail: #{@quick_order.email}" %>
+
+<!-- Info alert -->
+<div class="alert alert-info alert-styled-left alert-arrow-left alert-component">
+    <h6 class="alert-heading text-semibold">QUICK BOOKING ORDER</h6>
+    <!-- Navigation -->
+    
+        <div class="panel-heading">
+            <h6 class="panel-title">Customer</h6>
+            <div class="heading-elements">
+                <a href="#" class="heading-text">More orders (10)</a>
+            </div>
+        </div>
+
+        <div class="list-group list-group-borderless no-padding-top">
+            <div class="list-group-item"><i class="icon-user"></i> <label class="panel-title"><%= @quick_order.first_name %> <%= @quick_order.last_name %></label></div>
+            <div href="#" class="list-group-item"><i class="icon-envelop4"></i> <label class="panel-title"><%= @quick_order.email %></label></div>
+            <div href="#" class="list-group-item"><i class="icon-phone2"></i> <label class="panel-title"><%= @quick_order.phone %></label></div>
+            <div class="list-group-divider"></div>
+            <div href="#" class="list-group-item"><i class="icon-calendar3"></i> <label class="text-semibold">Message</label> <br/><br/><%= @quick_order.message %></div>
+        </div>
+    
+    <!-- /navigation -->
+</div>
+<!-- /info alert -->
