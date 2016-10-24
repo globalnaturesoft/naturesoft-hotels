@@ -6,6 +6,7 @@ module Naturesoft::Hotels
     belongs_to :user
     has_many :rooms, dependent: :destroy, :inverse_of => :hotel
     has_many :hotel_images, dependent: :destroy, :inverse_of => :hotel
+    has_many :reviews, dependent: :destroy, :inverse_of => :hotel
     accepts_nested_attributes_for :hotel_images,
 				:reject_if => lambda { |a| a[:image].blank? && a[:id].blank? },
 				:allow_destroy => true
@@ -27,6 +28,14 @@ module Naturesoft::Hotels
 		
 		def at_least_one_facility
 			errors.add(:base, 'must add at least one facility') if self.facilities.blank?
+		end
+		
+		def get_main_image
+			self.hotel_images.where(is_main: true).first
+		end
+		
+		def get_extra_images
+			self.hotel_images.where(is_main: false).order("created_at asc")
 		end
     
     def self.sort_by

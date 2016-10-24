@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @review.first_name %>
+</p>
+
+<p>
+  <strong>Last:</strong>
+  <%= @review.last %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @review.email %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @review.phone %>
+</p>
+
+<p>
+  <strong>Room:</strong>
+  <%= @review.room_id %>
+</p>
+
+<p>
+  <strong>Rate:</strong>
+  <%= @review.rate %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @review.content %>
+</p>
+
+<p>
+  <strong>Hotel:</strong>
+  <%= @review.hotel %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @review.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_review_path(@review) %> |
+<%= link_to 'Back', reviews_path %>

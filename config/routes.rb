@@ -8,6 +8,13 @@ Naturesoft::Hotels::Engine.routes.draw do
         get "select2"
       end
     end
+    resources :reviews do
+      collection do
+        put "enable"
+        put "disable"
+        delete "delete"
+      end
+    end
     resources :rooms do
       collection do
         put "enable"
