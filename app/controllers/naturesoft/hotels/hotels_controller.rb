@@ -10,6 +10,7 @@ module Naturesoft
       
       def detail
         @review = Naturesoft::Hotels::Review.new
+        @order = Naturesoft::Hotels::Order.new
         @detail = Naturesoft::Hotels::Hotel.find(params[:hotel_id])
       end
     end

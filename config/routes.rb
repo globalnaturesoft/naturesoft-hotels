@@ -15,6 +15,13 @@ Naturesoft::Hotels::Engine.routes.draw do
         delete "delete"
       end
     end
+    resources :orders do
+      collection do
+        put "enable"
+        put "disable"
+        delete "delete"
+      end
+    end
     resources :rooms do
       collection do
         put "enable"

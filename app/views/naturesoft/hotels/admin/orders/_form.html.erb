@@ -1,0 +1,82 @@
+<%= form_for(order) do |f| %>
+  <% if order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tel %>
+    <%= f.text_field :tel %>
+  </div>
+
+  <div class="field">
+    <%= f.label :checkin %>
+    <%= f.datetime_select :checkin %>
+  </div>
+
+  <div class="field">
+    <%= f.label :checkout %>
+    <%= f.datetime_select :checkout %>
+  </div>
+
+  <div class="field">
+    <%= f.label :adult %>
+    <%= f.number_field :adult %>
+  </div>
+
+  <div class="field">
+    <%= f.label :child %>
+    <%= f.number_field :child %>
+  </div>
+
+  <div class="field">
+    <%= f.label :note %>
+    <%= f.text_area :note %>
+  </div>
+
+  <div class="field">
+    <%= f.label :room_id %>
+    <%= f.text_field :room_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :hotel_id %>
+    <%= f.text_field :hotel_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :user_id %>
+    <%= f.number_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
