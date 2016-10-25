@@ -14,5 +14,9 @@ Naturesoft::Nsmodule.class_eval do
         "style" => "default"
       }
     },
+    "quick_booking" => {
+      "label" => "Quick Booking",
+      "options" => {}
+    },
   }
 end
