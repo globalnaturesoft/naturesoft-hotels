@@ -37,6 +37,10 @@ module Naturesoft::Hotels
 		def get_extra_images
 			self.hotel_images.where(is_main: false).order("created_at asc")
 		end
+		
+		def self.get_hotel_stars(star)
+			self.where(star: star).count
+		end
     
     def self.sort_by
       [
