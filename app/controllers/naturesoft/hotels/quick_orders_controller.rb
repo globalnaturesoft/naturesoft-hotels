@@ -1,7 +1,7 @@
 module Naturesoft
   module Hotels
     class QuickOrdersController < Naturesoft::FrontendController
-      before_action :set_quick_order, only: []
+      before_action :set_quick_order
       
       # POST /quick_orders
       def quick_booking
