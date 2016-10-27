@@ -100,9 +100,19 @@ module Naturesoft::Hotels
 					records = records.joins(:areas).where(naturesoft_areas_areas: {id: params[:area_id]})
 			end
 			
-			# hotel type filter
+			# hotel types filter
 			if params[:hotel_type_ids].present?
 					records = records.where(hotel_type_id: params[:hotel_type_ids])
+			end
+			
+			# hotel stars filter
+			if params[:hotel_stars].present?
+					records = records.where(star: params[:hotel_stars])
+			end
+			
+			# hotel facilities filter
+			if params[:facility_ids].present?
+					records = records.joins(:facilities).where(naturesoft_hotels_facilities: {id: params[:facility_ids]}).uniq
 			end
 			
 			return records
