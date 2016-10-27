@@ -89,6 +89,22 @@ module Naturesoft::Hotels
     def self.frontend_search(params)
 			records = self.get_active
 			
+			# search keyword filter
+			if params[:keyword].present?
+					#records = records.where("LOWER(CONCAT(naturesoft_hotels_hotels.name,' ',naturesoft_hotels_hotels.hotel_type.name,' ', naturesoft_hotels_hotels.area.name)) LIKE ?", "%#{params[:keyword].downcase.strip}%")
+					records = records.where("LOWER(CONCAT(naturesoft_hotels_hotels.name)) LIKE ?", "%#{params[:keyword].downcase.strip}%")
+			end
+			
+			# area filter
+			if params[:area_id].present?
+					records = records.joins(:areas).where(naturesoft_areas_areas: {id: params[:area_id]})
+			end
+			
+			# hotel type filter
+			if params[:hotel_type_ids].present?
+					records = records.where(hotel_type_id: params[:hotel_type_ids])
+			end
+			
 			return records
 		end
     
