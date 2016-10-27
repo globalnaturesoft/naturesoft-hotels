@@ -2,10 +2,11 @@ module Naturesoft
   module Hotels
     class HotelsController < Naturesoft::FrontendController
       def hotels_grid
-        @hotels = Naturesoft::Hotels::Hotel.frontend_search(params)
+        @hotels = Naturesoft::Hotels::Hotel.frontend_search(params).paginate(:page => params[:page], :per_page => 8)
       end
       
       def hotels_list
+        @hotels = Naturesoft::Hotels::Hotel.frontend_search(params).paginate(:page => params[:page], :per_page => 6)
       end
       
       def detail
