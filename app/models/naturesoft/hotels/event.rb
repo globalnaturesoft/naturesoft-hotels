@@ -5,6 +5,7 @@ module Naturesoft::Hotels
     
     belongs_to :user
     belongs_to :event_category
+    belongs_to :hotel
     
     validates :title, presence: true
 		validates :image, presence: true

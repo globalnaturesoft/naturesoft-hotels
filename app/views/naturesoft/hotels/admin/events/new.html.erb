@@ -1,3 +1,18 @@
 <% title t(:new_event) %>
 
-<%= render 'form', event: @event %>
+<!-- Horizontal form options -->
+<div class="row">
+    <div class="col-md-12">
+
+        <!-- Basic layout-->
+        <div class="panel panel-flat">
+            
+            <div class="panel-body">
+                <%= render 'form', event: @event %>
+            </div>
+
+        </div>
+        <!-- /basic layout -->
+    </div>
+</div>
+<!-- /horizontal form options -->
