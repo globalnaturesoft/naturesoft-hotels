@@ -1,7 +1,7 @@
 <% title t(:quick_booking_orders) %>
 
 <div class="page_actions">
-    <%= link_to "#{t(:new_quick_order)} <i class=\"icon-plus22 position-right\"></i>".html_safe, naturesoft_hotels.new_admin_quick_order_path, class: 'btn btn-primary' %>
+    
 </div>
 <br />
 
@@ -75,7 +75,7 @@
                                 />
                             </td>
                             <td class="kq_search">
-                              <strong><%= link_to "#{item.email}<br/>#{item.phone}".html_safe, naturesoft_hotels.edit_admin_quick_order_path(item) %></strong>
+                              <strong><%= link_to "#{item.email}<br/>#{item.phone}".html_safe, naturesoft_hotels.admin_quick_order_path(item) %></strong>
                             </td>
                             <td class="kq_search"><%= item.first_name %> <%= item.last_name %> </td>
                             <td class="kq_search"><%= truncate(item.message, length: 30) %></td>
