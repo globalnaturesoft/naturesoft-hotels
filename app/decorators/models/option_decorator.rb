@@ -48,6 +48,7 @@ Naturesoft::Option.class_eval do
         "height" => "80",
         "scale" => "fill"
       }
-    }
+    },
+    "quick_order_announce_email" => nil,
   }
 end
