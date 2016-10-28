@@ -6,9 +6,9 @@ module Naturesoft
         @quick_order = QuickOrder.new(quick_order_params)
   
         if @quick_order.save
-          render text: 'Quick order was successfully created.'
+          render text: 'Sent successfully.'
         else
-          render text: 'Sorry!.'
+          render text: 'Send failed.'
         end
       end
   
