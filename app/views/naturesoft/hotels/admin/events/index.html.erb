@@ -78,7 +78,7 @@
                                   value="<%= item.custom_order %>"
                                 />
                             </td>
-                            <td><%= image_tag(image_src(item.image), size: "70x70", class: "img-rounded img-preview") %></td>
+                            <td><%= link_to image_tag(image_src(item.image), size: "70x70", class: "img-rounded img-preview"), naturesoft_hotels.edit_admin_event_path(item) %></td>
                             <td class="kq_search">
                               <strong><%= link_to truncate(item.title, lenght: 100), naturesoft_hotels.edit_admin_event_path(item) %></strong>
                             </td>

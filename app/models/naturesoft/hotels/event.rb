@@ -5,6 +5,7 @@ module Naturesoft::Hotels
     
     belongs_to :user
     belongs_to :event_category
+    belongs_to :hotel
     
     validates :title, presence: true
 		validates :image, presence: true
@@ -26,6 +27,18 @@ module Naturesoft::Hotels
         ["DESC","desc"]
       ]
     end
+    
+    # get event active
+    def self.get_active
+			self.where(status: "active").order("created_at DESC")
+		end
+    
+    # event search - listing
+    def self.event_search(params)
+			records = self.get_active
+			
+			return records
+		end
     
     #Filter, Sort
     def self.search(params)
