@@ -78,7 +78,7 @@ module Naturesoft::Hotels
     
     # get tour active
     def self.get_active
-			self.where(status: "active").order("created_at DESC")
+			self.where(status: "active")
 		end
     
     # get main image for tours
@@ -115,6 +115,21 @@ module Naturesoft::Hotels
 			if params[:facility_ids].present?
 					records = records.joins(:facilities).where(naturesoft_hotels_facilities: {id: params[:facility_ids]}).uniq
 			end
+			
+			# hotel sort price
+			if !params[:sort].nil?
+				if params[:sort] == "price_asc"
+					records = records.order("naturesoft_hotels_hotels.from_per_night ASC")
+				end
+				if params[:sort] == "price_desc"
+					records = records.order("naturesoft_hotels_hotels.from_per_night DESC")
+				end
+			else
+				records = records.order("naturesoft_hotels_hotels.created_at DESC")
+			end
+			
+			#hotel sort review
+			
 			
 			return records
 		end
