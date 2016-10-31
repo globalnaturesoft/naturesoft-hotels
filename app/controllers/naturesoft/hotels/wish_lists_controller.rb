@@ -18,8 +18,8 @@ module Naturesoft
       # DELETE /wish_lists/1
       # DELETE /wish_lists/1.json
       def destroy
-        @review.destroy
-        render text: 'Review was successfully destroyed.'
+        @wish_list.destroy
+        redirect_to naturesoft.admin_area_path(tab: 'favorite'), notice: 'WishList was successfully removed.'
       end
       
       private
