@@ -28,6 +28,18 @@ module Naturesoft::Hotels
       ]
     end
     
+    # get event active
+    def self.get_active
+			self.where(status: "active").order("created_at DESC")
+		end
+    
+    # event search - listing
+    def self.event_search(params)
+			records = self.get_active
+			
+			return records
+		end
+    
     #Filter, Sort
     def self.search(params)
       records = self.all

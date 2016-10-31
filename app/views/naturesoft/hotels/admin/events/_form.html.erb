@@ -85,9 +85,33 @@
         </div>
         <div class="tab-pane has-padding" id="control-tab2">
           <div class="form-group">
-            <label class="col-md-12 control-label" ><%= t(:content) %> </label>
+            <label class="col-md-12 control-label" ><%= t(:timeline) %> </label>
             <div class="col-md-12">
                 <%= f.text_area :content, rows: "4", cols: "4", class: "editor" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-12 control-label" ><%= t(:events_package_includes) %> </label>
+            <div class="col-md-12">
+                <%= f.text_area :content_1, rows: "4", cols: "4", class: "editor" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-12 control-label" ><%= t(:price_and_room_types) %> </label>
+            <div class="col-md-12">
+                <%= f.text_area :content_2, rows: "4", cols: "4", class: "editor" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-12 control-label" ><%= t(:additional_costs) %> </label>
+            <div class="col-md-12">
+                <%= f.text_area :content_3, rows: "4", cols: "4", class: "editor" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-12 control-label" ><%= t(:note) %> </label>
+            <div class="col-md-12">
+                <%= f.text_area :content_4, rows: "4", cols: "4", class: "editor" %>
             </div>
           </div>
         </div>
