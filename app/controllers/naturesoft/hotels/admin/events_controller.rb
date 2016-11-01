@@ -83,7 +83,7 @@ module Naturesoft
     
           # Only allow a trusted parameter "white list" through.
           def event_params
-            params.fetch(:event, {}).permit(:title, :content, :content_1, :content_2, :content_3, :content_4, :image, :event_category_id, :hotel_id)
+            params.fetch(:event, {}).permit(:title, :price, :content, :content_1, :content_2, :content_3, :content_4, :image, :event_category_id, :hotel_id)
           end
       end
     end

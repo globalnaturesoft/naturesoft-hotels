@@ -8,6 +8,7 @@ module Naturesoft::Hotels
     has_many :hotel_images, dependent: :destroy, :inverse_of => :hotel
     has_many :reviews, dependent: :destroy, :inverse_of => :hotel
     has_many :events, dependent: :destroy, :inverse_of => :hotel
+    has_many :event_orders, dependent: :destroy, :inverse_of => :hotel
     accepts_nested_attributes_for :hotel_images,
 				:reject_if => lambda { |a| a[:image].blank? && a[:id].blank? },
 				:allow_destroy => true
