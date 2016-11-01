@@ -90,33 +90,26 @@ module Naturesoft::Hotels
     # frontend search - listing
     def self.frontend_search(params)
 			records = self.get_active
-			
 			# search keyword filter
 			if params[:keyword].present?
-					#records = records.where("LOWER(CONCAT(naturesoft_hotels_hotels.name,' ',naturesoft_hotels_hotels.hotel_type.name,' ', naturesoft_hotels_hotels.area.name)) LIKE ?", "%#{params[:keyword].downcase.strip}%")
-					records = records.where("LOWER(CONCAT(naturesoft_hotels_hotels.name)) LIKE ?", "%#{params[:keyword].downcase.strip}%")
+				records = records.where("LOWER(CONCAT(naturesoft_hotels_hotels.name)) LIKE ?", "%#{params[:keyword].downcase.strip}%")
 			end
-			
 			# area filter
 			if params[:area_id].present?
 					records = records.joins(:areas).where(naturesoft_areas_areas: {id: params[:area_id]})
 			end
-			
 			# hotel types filter
 			if params[:hotel_type_ids].present?
 					records = records.where(hotel_type_id: params[:hotel_type_ids])
 			end
-			
 			# hotel stars filter
 			if params[:hotel_stars].present?
 					records = records.where(star: params[:hotel_stars])
 			end
-			
 			# hotel facilities filter
 			if params[:facility_ids].present?
 					records = records.joins(:facilities).where(naturesoft_hotels_facilities: {id: params[:facility_ids]}).uniq
 			end
-			
 			# hotel sort price
 			if !params[:sort].nil?
 				if params[:sort] == "price_asc"
@@ -128,9 +121,7 @@ module Naturesoft::Hotels
 			else
 				records = records.order("naturesoft_hotels_hotels.created_at DESC")
 			end
-			
 			#hotel sort review
-			
 			
 			return records
 		end
