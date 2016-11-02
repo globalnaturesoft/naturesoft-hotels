@@ -42,13 +42,13 @@ module Naturesoft
         #end
     
         # PATCH/PUT /orders/1
-        def update
-          if @order.update(order_params)
-            redirect_to naturesoft_hotels.edit_admin_order_path(@order.id), notice: 'Booking was successfully updated.'
-          else
-            render :edit
-          end
-        end
+        #def update
+        #  if @order.update(order_params)
+        #    redirect_to naturesoft_hotels.edit_admin_order_path(@order.id), notice: 'Booking was successfully updated.'
+        #  else
+        #    render :edit
+        #  end
+        #end
     
         # DELETE /orders/1
         def destroy
