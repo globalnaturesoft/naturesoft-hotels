@@ -14,6 +14,11 @@ module Naturesoft
         @order = Naturesoft::Hotels::Order.new
         @detail = Naturesoft::Hotels::Hotel.find(params[:hotel_id])
       end
+      
+      # GET /reviews/list
+      def reviews_list
+        @hotel = Hotel.find(params[:id])
+      end
     end
   end
 end

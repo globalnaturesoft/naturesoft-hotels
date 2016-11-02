@@ -5,9 +5,20 @@ module Naturesoft
       # POST /reviews
       def create
         @review = Review.new(review_params)
+        
         if @review.save
-          redirect_to naturesoft_hotels.hotel_detail_path(hotel_id: @review.hotel_id), notice: 'Review was successfully created.'
-        else
+					respond_to do |format|
+						format.html {
+							redirect_to naturesoft_hotels.hotel_detail_path(hotel_id: @review.hotel_id), notice: 'Review was successfully created.'
+						}
+						format.json {
+							render json: {
+								title: t(:success),
+								message: t(:review_success)
+							}
+						}
+					end
+				else
           render :new
         end
       end

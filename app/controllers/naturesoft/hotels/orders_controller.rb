@@ -13,10 +13,12 @@ module Naturesoft
 						format.json {
 							render json: {
 								title: t(:success),
-								message: t(:hotel_ordered_sucess)
+								message: t(:hotel_ordered_success)
 							}
 						}
 					end
+				else
+          render :new
         end
       end
       

@@ -13,10 +13,12 @@ module Naturesoft
             format.json {
               render json: {
                 title: t(:success),
-                message: t(:event_ordered_sucess)
+                message: t(:event_ordered_success)
               }
             }
           end
+        else
+          render :new
         end
         
         #if @event_order.save
