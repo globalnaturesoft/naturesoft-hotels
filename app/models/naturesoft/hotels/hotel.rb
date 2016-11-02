@@ -110,6 +110,17 @@ module Naturesoft::Hotels
 			if params[:facility_ids].present?
 					records = records.joins(:facilities).where(naturesoft_hotels_facilities: {id: params[:facility_ids]}).uniq
 			end
+			# hotel price filter
+			if params[:prices].present?
+				conds = []
+				params[:prices].each do |p|
+					scons = []
+					scons << "(naturesoft_hotels_hotels.from_per_night>=#{p.split("_")[0]})"
+					scons << "(naturesoft_hotels_hotels.from_per_night<=#{p.split("_")[1]})" if p.split("_")[1].present?
+					conds << "("+scons.join(" AND ")+")"
+				end
+				records = records.where(conds.join(" OR "))
+			end
 			# hotel sort price
 			if !params[:sort].nil?
 				if params[:sort] == "price_asc"
