@@ -1,24 +1,26 @@
-<p id="notice"><%= notice %></p>
+<% title "Detail: #{@event_order.email}" %>
 
-<p>
-  <strong>First name:</strong>
-  <%= @event_order.first_name %>
-</p>
+<!-- Info alert -->
+<div class="alert alert-info alert-styled-left alert-arrow-left alert-component">
+    <h6 class="alert-heading text-semibold"><%= t(:event_orders) %></h6>
+    <!-- Navigation -->
+    
+        <div class="panel-heading">
+            <h6 class="panel-title"><%= t(:customer) %></h6>
+        </div>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @event_order.last_name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @event_order.email %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @event_order.phone %>
-</p>
-
-<%= link_to 'Edit', edit_event_order_path(@event_order) %> |
-<%= link_to 'Back', event_orders_path %>
+        <div class="list-group list-group-borderless no-padding-top">
+            <div class="list-group-item"><i class="icon-user"></i> <label class="panel-title">Tên khách hàng: <%= @event_order.first_name %> <%= @event_order.last_name %></label></div>
+            <div class="list-group-item"><i class="icon-envelop4"></i> <label class="panel-title">Email: <%= @event_order.email %></label></div>
+            <div class="list-group-item"><i class="icon-mobile2"></i> <label class="panel-title">Số di động: <%= @event_order.phone %></label></div>
+            <div class="list-group-item"><i class="icon-home2"></i> <label class="panel-title">Số phòng: <%= @event_order.number %></label></div>
+            <div class="list-group-item"><i class="icon-calendar"></i> <label class="panel-title">Ngày nhận phòng: <%= @event_order.checkin.strftime("%d/%m/%Y") if !@event_order.checkin.nil? %></label></div>
+            <div class="list-group-item"><i class="icon-calendar"></i> <label class="panel-title">Ngày trả phòng: <%= @event_order.checkout.strftime("%d/%m/%Y") if !@event_order.checkout.nil? %></label></div>
+            <div class="list-group-item"><i class="icon-calendar"></i> <label class="panel-title">Ngày gửi yêu cầu: <%= @event_order.created_at.in_time_zone("Asia/Bangkok").strftime("%H:%M %d/%m/%Y") %></label></div>
+            <div class="list-group-divider"></div>
+            <div class="list-group-item"><i class="icon-calendar3"></i> <label class="text-semibold">Message</label> <br/><br/><%= @event_order.note %></div>
+        </div>
+    
+    <!-- /navigation -->
+</div>
+<!-- /info alert -->
