@@ -6,9 +6,17 @@ module Naturesoft
       def create
         @order = Order.new(order_params)
         if @order.save
-          redirect_to naturesoft_hotels.hotel_detail_path(hotel_id: @order.hotel_id), notice: 'Order was successfully created.'
-        else
-          render :new
+					respond_to do |format|
+						format.html {
+							redirect_to naturesoft_hotels.hotel_detail_path(hotel_id: @order.hotel_id), notice: 'Order was successfully created.'
+						}
+						format.json {
+							render json: {
+								title: t(:success),
+								message: t(:hotel_ordered_sucess)
+							}
+						}
+					end
         end
       end
       

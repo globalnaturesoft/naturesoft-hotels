@@ -4,12 +4,26 @@ module Naturesoft
       # POST /event_orders
       def create
         @event_order = EventOrder.new(event_order_params)
-  
+        
         if @event_order.save
-          redirect_to naturesoft_hotels.hotel_detail_path(hotel_id: @event_order.hotel_id), notice: 'Event order was successfully created.'
-        else
-          render :new
+          respond_to do |format|
+            format.html {
+              redirect_to naturesoft_hotels.hotel_detail_path(hotel_id: @event_order.hotel_id), notice: 'Event order was successfully created.'
+            }
+            format.json {
+              render json: {
+                title: t(:success),
+                message: t(:event_ordered_sucess)
+              }
+            }
+          end
         end
+        
+        #if @event_order.save
+        #  redirect_to naturesoft_hotels.hotel_detail_path(hotel_id: @event_order.hotel_id), notice: 'Event order was successfully created.'
+        #else
+        #  render :new
+        #end
       end
   
       private
