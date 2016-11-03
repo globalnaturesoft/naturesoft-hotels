@@ -16,6 +16,7 @@
             <div class="list-group-item"><i class="icon-phone"></i> <label class="panel-title">Số bàn: <%= @order.tel %></label></div>
             <div class="list-group-item"><i class="icon-office"></i> <label class="panel-title">Khách sạn: <%= @order.hotel.name %></label></div>
             <div class="list-group-item"><i class="icon-home2"></i> <label class="panel-title">Loại phòng: <%= @order.room.name %></label></div>
+            <div class="list-group-item"><i class="icon-home2"></i> <label class="panel-title">Số phòng: <%= @order.number %></label></div>
             <div class="list-group-item"><i class="icon-man-woman"></i> <label class="panel-title">Số người lớn: <%= @order.adult %></label></div>
             <div class="list-group-item"><i class="icon-height"></i> <label class="panel-title">Số trẻ em: <%= @order.child %></label></div>
             <div class="list-group-item"><i class="icon-calendar"></i> <label class="panel-title">Ngày nhận phòng: <%= @order.checkin.strftime("%d/%m/%Y") if !@order.checkin.nil? %></label></div>

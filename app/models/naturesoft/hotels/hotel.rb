@@ -15,6 +15,9 @@ module Naturesoft::Hotels
 		has_and_belongs_to_many :facilities
 		has_and_belongs_to_many :labels, :join_table => 'naturesoft_hotels_hotels_labels'
 		belongs_to :hotel_type
+		if Naturesoft::Core.available?("areas")
+        has_and_belongs_to_many :areas, class_name: 'Naturesoft::Areas::Area', :join_table => 'naturesoft_hotels_areas_hotels'
+    end
 		
 		def at_least_one_area
 			errors.add(:base, 'must add at least one area') if self.areas.blank?

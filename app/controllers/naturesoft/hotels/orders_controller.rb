@@ -29,7 +29,7 @@ module Naturesoft
       private
         # Only allow a trusted parameter "white list" through.
         def order_params
-					params.require(:order).permit(:first_name, :last_name, :email, :phone, :tel, :checkin, :checkout, :adult, :child, :note, :room_id, :hotel_id, :user_id)
+					params.require(:order).permit(:first_name, :last_name, :email, :phone, :tel, :checkin, :checkout, :adult, :child, :note, :number, :room_id, :hotel_id, :user_id)
 				end
     end
   end
