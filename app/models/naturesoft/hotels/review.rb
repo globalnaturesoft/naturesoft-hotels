@@ -17,7 +17,6 @@ module Naturesoft::Hotels
       [
 				["DESC","desc"],
         ["ASC","asc"]
-        
       ]
     end
     

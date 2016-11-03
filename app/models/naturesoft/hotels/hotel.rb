@@ -87,6 +87,30 @@ module Naturesoft::Hotels
 			image = hotel_images.where(is_main: "True").order("updated_at DESC").first
 		end
     
+    def avg_reviews
+			avg = reviews.get_active.sum(:rate)/reviews.get_active.count
+			return (avg*2).round(2)
+		end
+    
+    def rating_reviews
+			avg = self.avg_reviews
+			if avg >= 0 and avg < 2
+				return "Không tốt lắm"
+			end
+			if avg >= 2 and avg < 4
+				return "Tạm chấp nhận"
+			end
+			if avg >= 4 and avg < 6
+				return "Tốt"
+			end
+			if avg >= 6 and avg < 8
+				return "Rất tốt"
+			end
+			if avg >= 8 and avg <= 10
+				return "Tuyệt vời"
+			end
+		end
+    
     # frontend search - listing
     def self.frontend_search(params)
 			records = self.get_active
@@ -97,6 +121,10 @@ module Naturesoft::Hotels
 			# area filter
 			if params[:area_id].present?
 					records = records.joins(:areas).where(naturesoft_areas_areas: {id: params[:area_id]})
+			end
+			# label filter
+			if params[:label_id].present?
+					records = records.joins(:labels).where(naturesoft_hotels_labels: {id: params[:label_id]})
 			end
 			# hotel types filter
 			if params[:hotel_type_ids].present?
