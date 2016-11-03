@@ -1,5 +1,6 @@
 module Naturesoft::Hotels
   class Order < ApplicationRecord
+		validates :first_name, :last_name, :email, :phone, :room_id, :hotel_id, :checkin, :checkout, :adult, :child, presence: true
     belongs_to :room
     belongs_to :hotel
     

@@ -1,5 +1,6 @@
 module Naturesoft::Hotels
   class Review < ApplicationRecord
+		validates :first_name, :last_name, :email, :phone, :rate, :content, :user_id, :hotel_id, presence: true
     belongs_to :hotel
     belongs_to :user
     

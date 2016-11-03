@@ -1,5 +1,6 @@
 module Naturesoft::Hotels
   class EventOrder < ApplicationRecord
+		validates :first_name, :last_name, :email, :phone, :number, :checkin, :checkout, :hotel_id, :event_id, presence: true
     belongs_to :hotel
     belongs_to :event
     before_validation :update_event_info

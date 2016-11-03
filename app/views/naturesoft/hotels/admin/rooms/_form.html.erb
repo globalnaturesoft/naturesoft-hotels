@@ -39,16 +39,16 @@
                 </div>
                   
                 <div class="form-group">
-                    <label class="col-md-2 control-label" ><%= t(:price) %></label>
+                    <label class="col-md-2 control-label" ><%= t(:price) %> <span class='text-danger'>*</span></label>
                     <div class="col-md-10">
-                        <%= f.text_field :price, class: "form-control number_input" %>
+                        <%= f.text_field :price, class: "form-control number_input required" %>
                     </div>
                 </div>
                     
                 <div class="form-group">
-                    <label class="col-md-2 control-label" ><%= t(:time_line) %></label>
+                    <label class="col-md-2 control-label" ><%= t(:time_line) %> <span class='text-danger'>*</span></label>
                     <div class="col-md-10">
-                        <%= f.text_field :time_line, class: "form-control" %>
+                        <%= f.text_field :time_line, class: "form-control required" %>
                     </div>
                 </div>
                     
