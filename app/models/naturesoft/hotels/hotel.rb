@@ -120,7 +120,8 @@ module Naturesoft::Hotels
 			end
 			# area filter
 			if params[:area_id].present?
-					records = records.joins(:areas).where(naturesoft_areas_areas: {id: params[:area_id]})
+				area = Naturesoft::Areas::Area.find(params[:area_id])
+				records = records.joins(:areas).where(naturesoft_areas_areas: {id: area.get_all_related_ids})
 			end
 			# label filter
 			if params[:label_id].present?
