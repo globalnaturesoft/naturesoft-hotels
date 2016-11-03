@@ -8,7 +8,7 @@ module Naturesoft
         if WishList.where(hotel_id: params[:hotel_id]).where(user_id: params[:user_id]).count == 0
           @wish_list = WishList.new(hotel_id: params[:hotel_id], user_id: params[:user_id])
           if @wish_list.save
-            redirect_to naturesoft_hotels.hotel_detail_path(hotel_id: @wish_list.hotel_id), notice: 'WishList was successfully created.'
+            redirect_to naturesoft.wish_list_path, notice: 'WishList was successfully created.'
           end
         else
           redirect_to :back

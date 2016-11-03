@@ -2,6 +2,10 @@ module Naturesoft
   module Hotels
     class OrdersController < Naturesoft::FrontendController
       
+      def invoice
+				render :layout => false
+			end
+      
       # POST /reviews
       def create
         @order = Order.new(order_params)
