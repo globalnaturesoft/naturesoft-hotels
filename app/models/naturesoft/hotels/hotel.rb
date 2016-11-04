@@ -97,19 +97,19 @@ module Naturesoft::Hotels
     
     def rating_reviews
 			avg = self.avg_reviews
-			if avg >= 0 and avg < 2
+			if avg >= 0 and avg <= 2
 				return "Không tốt lắm"
 			end
-			if avg >= 2 and avg < 4
+			if avg > 2 and avg <= 4
 				return "Tạm chấp nhận"
 			end
-			if avg >= 4 and avg < 6
+			if avg > 4 and avg <= 6
 				return "Tốt"
 			end
-			if avg >= 6 and avg < 8
+			if avg > 6 and avg <= 8
 				return "Rất tốt"
 			end
-			if avg >= 8 and avg <= 10
+			if avg > 8 and avg <= 10
 				return "Tuyệt vời"
 			end
 		end

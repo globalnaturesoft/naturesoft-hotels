@@ -88,7 +88,7 @@ module Naturesoft
     
           # Only allow a trusted parameter "white list" through.
           def facility_params
-            params.fetch(:facility, {}).permit(:name, :status)
+            params.fetch(:facility, {}).permit(:code, :name)
           end
       end
     end

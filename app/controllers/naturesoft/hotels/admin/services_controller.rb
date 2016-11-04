@@ -89,7 +89,7 @@ module Naturesoft
     
           # Only allow a trusted parameter "white list" through.
           def service_params
-            params.fetch(:service, {}).permit(:name)
+            params.fetch(:service, {}).permit(:code, :name)
           end
       end
     end

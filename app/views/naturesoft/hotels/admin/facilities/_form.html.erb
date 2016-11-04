@@ -21,6 +21,13 @@
             <%= f.text_field :name, class: "form-control required" %>
         </div>
     </div>
+        
+    <div class="form-group">
+        <label class="col-md-2 control-label" ><%= t(:code) %></label>
+        <div class="col-md-10">
+            <%= f.text_field :code, class: "form-control" %>
+        </div>
+    </div>
 
     <div class="text-right">
         <%= button_tag "#{t(:save)} <i class=\"icon-plus22 position-right\"></i>".html_safe, class: "btn btn-primary"%>
