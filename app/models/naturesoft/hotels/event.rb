@@ -31,7 +31,7 @@ module Naturesoft::Hotels
     
     # get event active
     def self.get_active
-			self.where(status: "active").order("created_at DESC")
+			self.where(status: "active")
 		end
     
     # event search - listing
