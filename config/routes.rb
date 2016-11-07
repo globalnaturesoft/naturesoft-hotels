@@ -1,5 +1,5 @@
 Naturesoft::Hotels::Engine.routes.draw do
-  namespace :admin, module: "admin", path: "admin/hotels" do
+  namespace :backend, module: "backend", path: "backend/hotels" do
     resources :hotels do
       collection do
         put "enable"

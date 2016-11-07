@@ -31,7 +31,7 @@ module Naturesoft::Hotels
     
     # get event active
     def self.get_active
-			self.where(status: "active").order("created_at DESC")
+			self.where(status: "active")
 		end
     
     # event search - listing
@@ -76,6 +76,12 @@ module Naturesoft::Hotels
 				end
 				if params[:sort] == "price_desc"
 					records = records.order("naturesoft_hotels_events.price DESC")
+				end
+				if params[:sort] == "name_asc"
+					records = records.joins(:hotel).order("naturesoft_hotels_hotels.name ASC")
+				end
+				if params[:sort] == "name_desc"
+					records = records.joins(:hotel).order("naturesoft_hotels_hotels.name DESC")
 				end
 			else
 				records = records.order("naturesoft_hotels_events.created_at DESC")

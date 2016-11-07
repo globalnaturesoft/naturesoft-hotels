@@ -1,0 +1,10 @@
+<%
+  options = nsmodule.get_options
+  hotels = Naturesoft::Hotels::Hotel.get_favourite_hotels(params)
+%>
+
+<%= render "naturesoft/"+nsmodule.engine_name+"/backend/nsmodules/"+nsmodule.module_name+"/templates/"+options["style"],
+  options: options,
+  hotels: hotels,
+  nsmodule: nsmodule
+%>
