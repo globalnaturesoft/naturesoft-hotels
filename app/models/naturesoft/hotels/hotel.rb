@@ -161,6 +161,12 @@ module Naturesoft::Hotels
 				if params[:sort] == "price_desc"
 					records = records.order("naturesoft_hotels_hotels.from_per_night DESC")
 				end
+				if params[:sort] == "name_asc"
+					records = records.order("naturesoft_hotels_hotels.name ASC")
+				end
+				if params[:sort] == "name_desc"
+					records = records.order("naturesoft_hotels_hotels.name DESC")
+				end
 			else
 				records = records.order("naturesoft_hotels_hotels.created_at DESC")
 			end
