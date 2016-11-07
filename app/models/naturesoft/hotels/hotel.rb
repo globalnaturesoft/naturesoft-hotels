@@ -91,7 +91,7 @@ module Naturesoft::Hotels
 		end
     
     def avg_reviews
-			if reviews.count > 0
+			if reviews.get_active.count > 0 and reviews.count > 0
 				avg = reviews.get_active.sum(:rate)/reviews.get_active.count
 				return (avg*2).round(2)
 			else
