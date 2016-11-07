@@ -14,6 +14,15 @@ Naturesoft::Nsmodule.class_eval do
         "style" => "default"
       }
     },
+    "hotel_by_label" => {
+      "label" => "Hotel By Label",
+      "options" => {
+        "description" => nil,
+        "label_id" => nil,
+        "menu_id" => nil,
+        "style" => "default"
+      }
+    },
     "quick_booking" => {
       "label" => "Quick Booking",
       "options" => {}

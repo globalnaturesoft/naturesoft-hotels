@@ -42,6 +42,10 @@ module Naturesoft::Hotels
 		def self.get_hotel_stars(star)
 			self.where(star: star).count
 		end
+		
+		def self.get_hotel_by_label(label)
+			self.where(status: "active")
+		end
     
     def self.sort_by
       [
