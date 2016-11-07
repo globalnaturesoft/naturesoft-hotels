@@ -1,0 +1,309 @@
+<% if hotel.errors.any? %>
+  <div class="alert alert-warning alert-bordered">
+    <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+    <div id="error_explanation">
+      <h2><%= pluralize(hotel.errors.count, "error") %> prohibited this hotel from being saved:</h2>
+  
+      <ul>
+      <% hotel.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<%= form_for([naturesoft_hotels, :backend, hotel], html: {class: "form-horizontal validate", multipart: true}) do |f| %>
+    <div class="tabbable tab-content-bordered">
+        <ul class="nav nav-tabs bg-primary">
+            <li class="active"><a href="#control-tab1" data-toggle="tab"><%= t(:infomations) %></a></li>
+            <li><a href="#control-tab2" data-toggle="tab"><%= t(:description) %> </a></li>
+            <li><a href="#control-tab3" data-toggle="tab"><%= t(:hotel_facilities) %> </a></li>
+            <li><a href="#control-tab4" data-toggle="tab"><%= t(:hotel_rooms) %> </a></li>
+            <li><a href="#control-tab5" data-toggle="tab"><%= t(:hotel_images) %> </a></li>
+            <li><a href="#control-tab6" data-toggle="tab"><%= t(:hotel_seo) %> </a></li>
+            <li><a href="#control-tab7" data-toggle="tab"><%= t(:terms_and_conditions) %> </a></li>
+        </ul>
+        <div class="tab-content">
+          
+            <div class="tab-pane has-padding active" id="control-tab1">
+                <div class="form-group">
+                    <label class="col-md-2 control-label" ><%= t(:name) %> <span class='text-danger'>*</span></label>
+                    <div class="col-md-10">
+                        <%= f.text_field :name, class: "form-control required" %>
+                    </div>
+                </div>
+                    
+                <div class="form-group">
+                    <label class="col-md-2 control-label" ><%= t(:address) %> <span class='text-danger'>*</span></label>
+                    <div class="col-md-10">
+                        <%= f.text_field :address, class: "form-control required" %>
+                    </div>
+                </div>
+                    
+                <div class="form-group">
+                    <label class="col-md-2 control-label" ><%= t(:position) %> <span class='text-danger'>*</span></label>
+                    <div class="col-md-10">
+                        <%= f.text_field :position, class: "form-control required" %>
+                    </div>
+                </div>
+                    
+                <div class="form-group">
+                    <label class="col-md-2 control-label" ><%= t(:longtitude) %> <span class='text-danger'>*</span></label>
+                    <div class="col-md-10">
+                        <%= f.text_field :longtitude, class: "form-control required" %>
+                    </div>
+                </div>
+                    
+                <div class="form-group">
+                    <label class="col-md-2 control-label" ><%= t(:latitude) %> <span class='text-danger'>*</span></label>
+                    <div class="col-md-10">
+                        <%= f.text_field :latitude, class: "form-control required" %>
+                    </div>
+                </div>
+                    
+                <div class="form-group">
+                    <label class="col-md-2 control-label" ><%= t(:from_per_night) %> <span class='text-danger'>*</span></label>
+                    <div class="col-md-10">
+                        <%= f.text_field :from_per_night, class: "form-control number_input required" %>
+                    </div>
+                </div>
+                    
+                <div class="form-group">
+                    <label class="col-md-2 control-label" ><%= t(:star) %> <span class='text-danger'>*</span></label>
+                    <div class="col-md-10">
+                        <label class="radio-inline">
+                          <input type="radio" class="styled-hotel-star" name="hotel[star]" value="1" <% if !hotel.star.nil? %><% if hotel.star == 1 %>checked="checked"<% end %><% else %>checked="checked"<% end %>>
+                          1 Sao
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" class="styled-hotel-star" name="hotel[star]" value="2"<% if !hotel.star.nil? %><% if hotel.star == 2 %>checked="checked"<% end %><% end %>>
+                          2 Sao
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" class="styled-hotel-star" name="hotel[star]" value="3"<% if !hotel.star.nil? %><% if hotel.star == 3 %>checked="checked"<% end %><% end %>>
+                          3 Sao
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" class="styled-hotel-star" name="hotel[star]" value="4"<% if !hotel.star.nil? %><% if hotel.star == 4 %>checked="checked"<% end %><% end %>>
+                          4 Sao
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" class="styled-hotel-star" name="hotel[star]" value="5"<% if !hotel.star.nil? %><% if hotel.star == 5 %>checked="checked"<% end %><% end %>>
+                          5 Sao
+                        </label>
+                    </div>
+                </div>
+            
+                <div class="form-group field">
+                    <label class="col-md-2 control-label" ><%= t(:label) %> <span class='text-danger'>*</span></label>
+                    <div class="col-md-10">
+                      <div class="input-group">
+                        <% selected = options_for_select((hotel.labels.map {|c| [c.name, c.id]}),hotel.labels.map(&:id)) %>
+                        <%= select_tag("hotel[label_ids][]",
+                          selected,
+                          {
+                            class: "select2-ajax",
+                            include_blank: "none",
+                            multiple: "multiple",
+                            "data-url": select2_backend_labels_path,
+                          }
+                        ) %>
+                        <span class="input-group-btn">
+                          <a class="btn btn-info" href="<%= naturesoft_hotels.new_backend_label_path %>"><i class="icon-plus2"></i></a>
+                        </span>
+                      </div>
+                    </div>
+                </div>
+                
+                <div class="form-group field">
+                    <label class="col-md-2 control-label" ><%= t(:type) %> <span class='text-danger'>*</span></label>
+                    <div class="col-md-10">
+                      <div class="input-group">
+                        <% type_selected = options_for_select([[hotel.hotel_type.name, hotel.hotel_type_id]],hotel.hotel_type_id) if hotel.hotel_type.present? %>
+                        <%= select_tag("hotel[hotel_type_id]",
+                          type_selected,
+                          {
+                            class: "select2-ajax",
+                            include_blank: "none",
+                            "data-url": select2_backend_hotel_types_path,
+                          }
+                        ) %>
+                        <span class="input-group-btn">
+                          <a class="btn btn-info" href="<%= naturesoft_hotels.new_backend_hotel_type_path %>"><i class="icon-plus2"></i></a>
+                        </span>
+                      </div>
+                    </div>
+                </div>
+                      
+                <div class="form-group field">
+                    <label class="col-md-2 control-label" ><%= t(:areas) %> <span class='text-danger'>*</span></label>
+                    <div class="col-md-10">
+                      <div class="input-group">
+                        <% area_selected = options_for_select((hotel.areas.map {|c| [c.full_name, c.id]}),hotel.areas.map(&:id)) %>
+                        <%= select_tag("hotel[area_ids][]",
+                          area_selected,
+                          {
+                            class: "select2-ajax",
+                            include_blank: "none",
+                            multiple: "multiple",
+                            "data-url": naturesoft_areas.select2_backend_areas_path,
+                          }
+                        ) %>
+                        <span class="input-group-btn">
+                          <a class="btn btn-info" href="<%= naturesoft_areas.new_backend_area_path %>"><i class="icon-plus2"></i></a>
+                        </span>
+                      </div>
+                    </div>
+                </div>
+                    
+            </div>
+                
+            <div class="tab-pane has-padding" id="control-tab2">
+              <div class="form-group">
+                <div class="col-md-12">
+                  <%= f.text_area :description, rows: "4", cols: "4", class: "editor" %>
+                </div>
+              </div>
+            </div>
+              
+            <div class="tab-pane has-padding" id="control-tab3">
+              <div class="form-group">
+                <% Naturesoft::Hotels::Facility.order("name asc").each do |item| %>
+                <div class="col-md-6">
+                    <div class="checkbox">
+                      <label>
+                        <input<%= " checked" if hotel.facilities.include?(item) %> id="hotel_facility_ids_" name="hotel[facility_ids][]" value="<%= item.id %>" type="checkbox" class="hotel-facilities">
+                        <%= item.name %>
+                      </label>
+                    </div>
+                  </div>
+                <% end %>
+                </div>
+            </div>
+            
+            <div class="tab-pane has-padding" id="control-tab4">
+              <%= link_to "#{t(:new_room)} <i class=\"icon-plus22 position-right\"></i>".html_safe, naturesoft_hotels.new_backend_room_path, class: 'btn btn-primary' %><br><br>
+              <% hotel.rooms.each do |item| %>
+              <div class="panel panel-default">
+								<div class="panel-heading">
+									<h6 class="panel-title"><%= item.name %></h6>
+									<div class="heading-elements">
+                    <%= link_to '<i class="icon-pencil position-left"></i> Edit Room'.html_safe, naturesoft_hotels.edit_backend_room_path(item), class: "btn btn-primary" %>
+									</div>
+                </div>
+								<div class="panel-body"><%= item.description.html_safe %></div>
+                <table class="table table-borderless table-xs content-group-sm">
+									<tbody>
+										<tr>
+											<td><i class="icon-barcode2 position-left"></i> Code:</td>
+											<td class="text-right"><span class="pull-right">#<%= item.code %></span></td>
+										</tr>
+										<tr>
+											<td><i class="icon-office position-left"></i> Hotel:</td>
+											<td class="text-right"><%= item.hotel.name %></td>
+										</tr>
+                    <tr>
+											<td><i class="icon-price-tag position-left"></i> Price:</td>
+											<td class="text-right"><% if !item.price.nil? %><%= format_number(item.price) %> VNĐ<% end %><% if !item.time_line.empty? %> / <%= item.time_line %><% end %></td>
+										</tr>
+										<tr>
+											<td><i class="icon-playlist position-left"></i> Services:</td>
+											<td class="text-right">
+												<div class="btn-group">
+													<a class="label label-danger dropdown-toggle" data-toggle="dropdown">Services <span class="caret"></span></a>
+													<ul class="dropdown-menu dropdown-menu-right">
+                            <% item.services.each do |service| %>
+														<li><a><span class="status-mark position-left bg-info"></span> <%= service.name %></a></li>
+                            <% end %>
+													</ul>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+              <% end %>
+            </div>
+            
+            <div class="tab-pane has-padding addable-form" data-sample="image-form" id="control-tab5">
+              <div class="addable-container">
+                <% hotel.hotel_images.each_with_index do |image,index| %>
+                  <%= render "image_form", item: image, index: index %>
+                <% end %>
+              </div>
+              <div class="row">
+                <div class="col-md-2">
+                  <div class="text-left">
+                    <a href="#add" class="btn btn-info addable-add"><%= t(:add_image) %> <i class="icon-plus2 position-center"></i></a>
+                  </div>
+                </div>
+              </div>  
+            </div>
+            
+            <div class="tab-pane has-padding" id="control-tab6">
+              <div class="form-group">
+                  <label class="col-md-2 control-label" ><%= t(:meta_keywords) %></label>
+                  <div class="col-md-10">
+                      <%= f.text_area :meta_keywords, rows: "5", cols: "5", class: "form-control" %>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-md-2 control-label" ><%= t(:meta_description) %></label>
+                  <div class="col-md-10">
+                      <%= f.text_area :meta_description, rows: "5", cols: "5", class: "form-control" %>
+                  </div>
+              </div>
+            </div>
+            
+            <div class="tab-pane has-padding" id="control-tab7">
+              <div class="form-group">
+                <label class="col-lg-2 control-label" ><strong>1. Check-in and check-out time</strong></label>
+                <br style="clear:both" />
+                <div>
+                    <%= f.text_area :terms_1, rows: "3", cols: "3", class: "editor" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-2 control-label" ><strong>2. Check-in policies</strong></label>
+                <br style="clear:both" />
+                <div>
+                    <%= f.text_area :terms_2, rows: "3", cols: "3", class: "editor" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-2 control-label" ><strong>3. Hotel cancellation</strong></label>
+                <br style="clear:both" />
+                <div>
+                    <%= f.text_area :terms_3, rows: "3", cols: "3", class: "editor" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-2 control-label" ><strong>4. Children and extra beds</strong></label>
+                <br style="clear:both" />
+                <div>
+                    <%= f.text_area :terms_4, rows: "3", cols: "3", class: "editor" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-2 control-label" ><strong>5. Terms and conditions for ordered serivices</strong></label>
+                <br style="clear:both" />
+                <div>
+                    <%= f.text_area :terms_5, rows: "3", cols: "3", class: "editor" %>
+                </div>
+              </div>
+            </div>
+            
+        </div>
+    </div>
+    <br>
+    <div class="text-right">
+        <%= button_tag "#{t(:save)} <i class=\"icon-plus22 position-right\"></i>".html_safe, class: "btn btn-primary"%>
+    </div>
+<% end %>
+
+<!-- thumbnail size sample form -->
+<div class="image-form hide">
+  <%= render 'image_form', item: Naturesoft::Hotels::HotelImage.new, index: "<<index>>" %>
+</div>
+<!--/thumbnail size sample form -->

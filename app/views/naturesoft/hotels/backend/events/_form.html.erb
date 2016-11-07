@@ -1,0 +1,130 @@
+<% if event.errors.any? %>
+  <div class="alert alert-warning alert-bordered">
+    <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+    <div id="error_explanation">
+      <h2><%= pluralize(event.errors.count, "error") %> prohibited this slideshow from being saved:</h2>
+  
+      <ul>
+      <% event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<%= form_for([naturesoft_hotels, :backend, event], html: {class: "form-horizontal validate", multipart: true}) do |f| %>
+    <div class="tabbable tab-content-bordered">
+      <ul class="nav nav-tabs bg-primary">
+        <li class="active"><a href="#control-tab1" data-toggle="tab"><%= t(:info) %></a></li>
+        <li><a href="#control-tab2" data-toggle="tab"><%= t(:content) %> </a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane has-padding active" id="control-tab1">
+          <div class="form-group">
+            <label class="col-md-2 control-label" ><%= t(:image) %> <span class='text-danger'>*</span></label>
+            <div class="media no-margin-top col-md-10">
+              <div class="media-left">
+                <a href="#">
+                  <% if event.image.system.present? %>
+                    <img src="<%= event.image.system %>" style="width: 70px; height: 70px; border-radius: 2px;" alt="">
+                  <% else %>
+                    <img src="/backend/assets/images/placeholder.jpg" style="width: 70px; height: 70px; border-radius: 2px;" alt="">
+                  <% end %>
+                </a>
+              </div>
+        
+              <div class="media-body">
+                <input type="file" name="event[image]" class="file-styled previewable">
+                <span class="help-block">Accepted formats: gif, png, jpg.</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label" ><%= t(:title) %> <span class='text-danger'>*</span></label>
+            <div class="col-md-10">
+                <%= f.text_field :title, class: "form-control required" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label" ><%= t(:price) %> <span class='text-danger'>*</span></label>
+            <div class="col-md-10">
+                <%= f.text_field :price, class: "form-control required" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label" ><%= t(:hotel) %> <span class='text-danger'>*</span></label>
+            <div class="col-md-10">
+              <div class="input-group">
+                  <% selected_hotel = options_for_select([[event.hotel.name, event.hotel_id]], event.hotel_id) if event.hotel.present? %>
+                  <%= select_tag("event[hotel_id]",
+                    selected_hotel,
+                    {
+                      class: "select2-ajax required",
+                      include_blank: "none",
+                      "data-url": select2_backend_hotels_path,
+                    } )%>
+                  <span class="input-group-btn">
+                    <a class="btn btn-info" href="<%= naturesoft_hotels.new_backend_hotel_path %>"><i class="icon-plus2"></i></a>
+                  </span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label" ><%= t(:hotel) %> <span class='text-danger'>*</span></label>
+            <div class="col-md-10">
+              <div class="input-group">
+                  <% selected_category = options_for_select([[event.event_category.name, event.event_category_id]], event.event_category_id) if event.event_category.present? %>
+                  <%= select_tag("event[event_category_id]",
+                    selected_category,
+                    {
+                      class: "select2-ajax required",
+                      include_blank: "none",
+                      "data-url": select2_backend_event_categories_path,
+                    } )%>
+                  <span class="input-group-btn">
+                    <a class="btn btn-info" href="<%= naturesoft_hotels.new_backend_event_category_path %>"><i class="icon-plus2"></i></a>
+                  </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane has-padding" id="control-tab2">
+          <div class="form-group">
+            <label class="col-md-12 control-label" ><%= t(:timeline) %> </label>
+            <div class="col-md-12">
+                <%= f.text_area :content, rows: "4", cols: "4", class: "editor" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-12 control-label" ><%= t(:events_package_includes) %> </label>
+            <div class="col-md-12">
+                <%= f.text_area :content_1, rows: "4", cols: "4", class: "editor" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-12 control-label" ><%= t(:price_and_room_types) %> </label>
+            <div class="col-md-12">
+                <%= f.text_area :content_2, rows: "4", cols: "4", class: "editor" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-12 control-label" ><%= t(:additional_costs) %> </label>
+            <div class="col-md-12">
+                <%= f.text_area :content_3, rows: "4", cols: "4", class: "editor" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-12 control-label" ><%= t(:note) %> </label>
+            <div class="col-md-12">
+                <%= f.text_area :content_4, rows: "4", cols: "4", class: "editor" %>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <br>
+  <div class="text-right">
+    <%= button_tag "#{t(:save)} <i class=\"icon-plus22 position-right\"></i>".html_safe, class: "btn btn-primary"%>
+  </div>
+<% end %>
