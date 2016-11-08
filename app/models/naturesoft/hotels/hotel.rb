@@ -43,8 +43,8 @@ module Naturesoft::Hotels
 			self.where(star: star).count
 		end
 		
-		def self.get_hotel_by_label(label)
-			self.where(status: "active")
+		def self.get_hotel_by_label(label_id)
+			self.joins(:labels).where(naturesoft_hotels_labels: {id: label_id}).get_active
 		end
     
     def self.sort_by
