@@ -3,6 +3,7 @@ Naturesoft::Nsmodule.class_eval do
     "facilities_list" => {
       "label" => "Facilities List",
       "options" => {
+        "menu_id" => nil,
         "description" => nil,
         "style" => "default"
       }

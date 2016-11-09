@@ -1,10 +1,12 @@
 <%
   options = nsmodule.get_options
   facilities = Naturesoft::Hotels::Facility.where(status: "active")
+  menus = Naturesoft::Menus::Menu.find(options["menu_id"])
 %>
 
 <%= render "naturesoft/"+nsmodule.engine_name+"/backend/nsmodules/"+nsmodule.module_name+"/templates/"+options["style"],
   options: options,
   facilities: facilities.limit(24),
+  menus: menus,
   nsmodule: nsmodule
 %>
