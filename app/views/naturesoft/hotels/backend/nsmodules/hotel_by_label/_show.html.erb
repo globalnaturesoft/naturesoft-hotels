@@ -1,10 +1,12 @@
 <%
   options = nsmodule.get_options
   hotels = Naturesoft::Hotels::Hotel.get_hotel_by_label(options["label_id"])
+  menus = Naturesoft::Menus::Menu.find(options["menu_id"])
 %>
 
 <%= render "naturesoft/"+nsmodule.engine_name+"/backend/nsmodules/"+nsmodule.module_name+"/templates/"+options["style"],
   options: options,
   hotels: hotels,
+  menus: menus,
   nsmodule: nsmodule
 %>
