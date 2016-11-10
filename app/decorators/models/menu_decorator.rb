@@ -24,6 +24,14 @@ if Naturesoft::Core.available?("menus")
         "params" => {
         
         }
+      },
+      "hotel_by_type" => {
+        "label" => "Hotel By Type",
+        "controller" => "/naturesoft/hotels/hotels",
+        "action" => "hotels_grid",
+        "params" => {
+          "hotel_type_id" => nil,
+        }
       }
     }
   end

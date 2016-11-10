@@ -1,0 +1,14 @@
+<% hotel_type = Naturesoft::Hotels::HotelType.where(id: params["hotel_type_id"]).first %>
+<div class="form-group">
+    <label class="col-md-2 control-label" ><%= t(:hotel_type_id) %> <span class='text-danger'>*</span></label>
+    <div class="col-md-10">
+        <% selected = options_for_select([[hotel_type.name,hotel_type.id]],hotel_type.id) if !hotel_type.nil? %>
+        <%= select_tag("params[hotel_type_id]",
+          selected,
+          {
+            class: "select2-ajax required",
+            "data-url": naturesoft_hotels.select2_backend_hotel_types_path,
+          }
+        ) %>
+    </div>
+</div>
