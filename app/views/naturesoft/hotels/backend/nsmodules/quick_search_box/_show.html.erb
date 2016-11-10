@@ -1,0 +1,10 @@
+<%
+  options = nsmodule.get_options
+  menus = Naturesoft::Menus::Menu.find(options["menu_id"])
+%>
+
+<%= render "naturesoft/"+nsmodule.engine_name+"/backend/nsmodules/"+nsmodule.module_name+"/templates/default",
+  options: options,
+  menus: menus,
+  nsmodule: nsmodule
+%>

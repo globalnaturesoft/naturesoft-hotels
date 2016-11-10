@@ -28,5 +28,11 @@ Naturesoft::Nsmodule.class_eval do
       "label" => "Quick Booking",
       "options" => {}
     },
+    "quick_search_box" => {
+      "label" => "Quick Search Box",
+      "options" => {
+        "menu_id" => nil,
+      }
+    },
   }
 end
