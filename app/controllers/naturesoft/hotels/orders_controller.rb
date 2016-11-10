@@ -10,6 +10,11 @@ module Naturesoft
       def create
         @order = Order.new(order_params)
         if @order.save
+					
+					# send @order email: admin + customer
+					Naturesoft::Hotels::OrderMailer.sending_announce_email_order(@order).deliver_now
+					Naturesoft::Hotels::OrderMailer.sending_customer_email_order(@order).deliver_now
+					
 					respond_to do |format|
 						format.html {
 							redirect_to naturesoft_hotels.hotel_detail_path(hotel_id: @order.hotel_id), notice: 'Order was successfully created.'

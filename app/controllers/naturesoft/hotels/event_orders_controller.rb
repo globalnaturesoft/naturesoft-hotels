@@ -6,6 +6,11 @@ module Naturesoft
         @event_order = EventOrder.new(event_order_params)
         
         if @event_order.save
+          
+          # send @order email: admin + customer
+          Naturesoft::Hotels::EventOrderMailer.sending_announce_email_event_order(@event_order).deliver_now
+					Naturesoft::Hotels::EventOrderMailer.sending_customer_email_event_order(@event_order).deliver_now
+          
           respond_to do |format|
             format.html {
               redirect_to naturesoft_hotels.hotel_detail_path(hotel_id: @event_order.hotel_id), notice: 'Event order was successfully created.'

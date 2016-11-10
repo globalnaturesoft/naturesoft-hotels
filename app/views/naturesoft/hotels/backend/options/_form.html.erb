@@ -109,9 +109,37 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="control-label" ><%= t(:announce_email) %> <span class='text-danger'>*</span></label>
+                        <label class="control-label" ><%= t(:quick_order_announce_email) %> <span class='text-danger'>*</span></label>
                         <div class="">
                             <%= text_field_tag "options[hotels][quick_order_announce_email]", @options["hotels"]["quick_order_announce_email"], class: "form-control", placeholder: "Enter email to receive notification..." %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+            <hr>
+            
+            <h4 class="text-semibold">Booking Order <span class="text-muted small">Code</span></h4>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label" ><%= t(:order_announce_email) %> <span class='text-danger'>*</span></label>
+                        <div class="">
+                            <%= text_field_tag "options[hotels][order_announce_email]", @options["hotels"]["order_announce_email"], class: "form-control", placeholder: "Enter email to receive notification..." %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+            <hr>
+            
+            <h4 class="text-semibold">Event Booking Order <span class="text-muted small">Code</span></h4>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label" ><%= t(:event_order_announce_email) %> <span class='text-danger'>*</span></label>
+                        <div class="">
+                            <%= text_field_tag "options[hotels][event_order_announce_email]", @options["hotels"]["event_order_announce_email"], class: "form-control", placeholder: "Enter email to receive notification..." %>
                         </div>
                     </div>
                 </div>
