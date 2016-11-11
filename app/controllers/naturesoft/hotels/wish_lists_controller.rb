@@ -8,7 +8,7 @@ module Naturesoft
         if WishList.where(hotel_id: params[:hotel_id]).where(user_id: params[:user_id]).count == 0
           @wish_list = WishList.new(hotel_id: params[:hotel_id], user_id: params[:user_id])
           if @wish_list.save
-            redirect_to naturesoft.wish_list_path, notice: 'WishList was successfully created.'
+            redirect_to naturesoft.wish_list_path, notice: t('added_wishlist_success')
           end
         else
           redirect_to :back
@@ -19,7 +19,7 @@ module Naturesoft
       # DELETE /wish_lists/1.json
       def destroy
         @wish_list.destroy
-        redirect_to naturesoft.wish_list_path, notice: 'WishList was successfully removed.'
+        redirect_to naturesoft.wish_list_path, notice: t('removed_wishlist')
       end
       
       private

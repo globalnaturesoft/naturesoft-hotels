@@ -50,5 +50,7 @@ Naturesoft::Option.class_eval do
       }
     },
     "quick_order_announce_email" => nil,
+    "order_announce_email" => nil,
+    "event_order_announce_email" => nil,
   }
 end
