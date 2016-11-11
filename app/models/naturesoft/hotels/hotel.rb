@@ -208,5 +208,9 @@ module Naturesoft::Hotels
     def self.get_favourite_hotels(params)
 			self.get_all_hotels.limit(6)
 		end
+    
+    def get_display_label
+			labels.last
+		end
   end
 end

@@ -18,7 +18,8 @@ module Naturesoft
             }
           end
         else
-          render :new
+          puts @event_order.errors.full_messages
+          # render :new
         end
         
         #if @event_order.save
@@ -31,7 +32,7 @@ module Naturesoft
       private
         # Only allow a trusted parameter "white list" through.
         def event_order_params
-          params.require(:event_order).permit(:first_name, :last_name, :email, :phone, :number, :checkin, :checkout, :event_name, :event_price, :hotel_id, :event_id, :user_id)
+          params.require(:event_order).permit(:note, :first_name, :last_name, :email, :phone, :number, :checkin, :checkout, :event_name, :event_price, :hotel_id, :event_id, :user_id)
         end
     end
   end
