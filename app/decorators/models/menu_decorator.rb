@@ -32,6 +32,14 @@ if Naturesoft::Core.available?("menus")
         "params" => {
           "hotel_type_id" => nil,
         }
+      },
+      "hotel_by_areas" => {
+        "label" => "Hotel By Areas",
+        "controller" => "/naturesoft/areas/areas",
+        "action" => "listing",
+        "params" => {
+          "hotel_list_id" => nil,
+        }
       }
     }
   end
