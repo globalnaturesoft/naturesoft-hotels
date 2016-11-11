@@ -44,7 +44,7 @@ module Naturesoft::Hotels
 		end
 		
 		def self.get_hotel_by_label(label_id)
-			self.joins(:labels).where(naturesoft_hotels_labels: {id: label_id}).get_active
+			self.joins(:labels).where(naturesoft_hotels_labels: {id: label_id}).get_active.uniq
 		end
     
     def self.sort_by
