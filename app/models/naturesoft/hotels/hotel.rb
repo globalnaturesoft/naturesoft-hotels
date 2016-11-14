@@ -209,6 +209,15 @@ module Naturesoft::Hotels
 			self.get_all_hotels.limit(6)
 		end
     
+    # count hotels by area
+    def self.count_hotels_by_area(area_id)
+			records = self.get_active
+			area = Naturesoft::Areas::Area.find(area_id)
+			records = records.joins(:areas).where(naturesoft_areas_areas: {id: area.get_all_related_ids})
+			
+			return records
+		end
+    
     def get_display_label
 			labels.last
 		end
