@@ -176,7 +176,7 @@ module Naturesoft::Hotels
 			end
 			#hotel sort review
 			
-			return records
+			return records.uniq
 		end
     
     # enable/disable status
