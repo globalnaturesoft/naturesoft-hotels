@@ -215,7 +215,7 @@ module Naturesoft::Hotels
 			area = Naturesoft::Areas::Area.find(area_id)
 			records = records.joins(:areas).where(naturesoft_areas_areas: {id: area.get_all_related_ids})
 			
-			return records
+			return records.uniq
 		end
     
     def get_display_label
