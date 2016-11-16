@@ -224,12 +224,12 @@ module Naturesoft::Hotels
     
 		# Get reviews list
 		def get_reviews(params={})
-			num_per_page = 5
+			num_per_page = 10
 			
 			reviews = self.reviews.get_active
 			
 			if params[:page].present?
-				reviews = reviews.limit(params[:page]*num_per_page)
+				reviews = reviews.limit(params[:page].to_i*num_per_page)
 			end
 			
 			reviews.order("created_at DESC")
