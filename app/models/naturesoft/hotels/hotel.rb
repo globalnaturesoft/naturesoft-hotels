@@ -219,7 +219,7 @@ module Naturesoft::Hotels
 		end
     
     def get_display_label
-			labels.last
+			labels.order(:custom_order).first
 		end
   end
 end
