@@ -43,6 +43,13 @@
     </div>
         
     <div class="form-group">
+        <label class="col-md-2 control-label" ><%= t(:html_class) %> <span class='text-danger'>*</span></label>
+        <div class="col-md-10">
+            <%= f.text_field :html_class, class: "form-control required" %>
+        </div>
+    </div>
+        
+    <div class="form-group">
         <label class="col-md-2 control-label" ><%= t(:description) %></label>
         <div class="col-md-10">
             <%= f.text_area :description, rows: "5", cols: "5", class: "form-control" %>

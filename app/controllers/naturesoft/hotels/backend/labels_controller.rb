@@ -89,7 +89,7 @@ module Naturesoft
     
           # Only allow a trusted parameter "white list" through.
           def label_params
-            params.fetch(:label, {}).permit(:name, :description, :icon)
+            params.fetch(:label, {}).permit(:name, :description, :icon, :html_class)
           end
       end
     end
