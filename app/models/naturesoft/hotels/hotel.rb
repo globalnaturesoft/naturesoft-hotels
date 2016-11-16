@@ -224,7 +224,7 @@ module Naturesoft::Hotels
     
 		# Get reviews list
 		def get_reviews(params={})
-			num_per_page = 1
+			num_per_page = 10
 			
 			reviews = self.reviews.get_active
 			
