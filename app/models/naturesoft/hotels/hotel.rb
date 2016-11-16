@@ -229,7 +229,7 @@ module Naturesoft::Hotels
 			reviews = self.reviews.get_active
 			
 			if params[:page].present?
-				reviews = reviews.offset(0).limit(params[:page]*num_per_page)
+				reviews = reviews.limit(params[:page].to_i*num_per_page)
 			end
 			
 			reviews.order("created_at DESC")
