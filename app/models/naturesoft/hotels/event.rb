@@ -87,7 +87,7 @@ module Naturesoft::Hotels
 				records = records.order("naturesoft_hotels_events.created_at DESC")
 			end
 			
-			return records
+			return records.uniq
 		end
     
     #Filter, Sort
