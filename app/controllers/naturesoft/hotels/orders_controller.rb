@@ -3,7 +3,13 @@ module Naturesoft
     class OrdersController < Naturesoft::FrontendController
       
       def invoice
-				render :layout => false
+				@order = Naturesoft::Hotels::Order.find(params[:order_id])
+				
+				if @order.user_id != current_user.id
+					redirect_to naturesoft.order_history_path
+				else
+					render :layout => false
+				end
 			end
       
       # POST /reviews
