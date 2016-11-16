@@ -221,5 +221,18 @@ module Naturesoft::Hotels
     def get_display_label
 			labels.order(:custom_order).first
 		end
+    
+		# Get reviews list
+		def get_reviews(params={})
+			num_per_page = 10
+			
+			reviews = self.reviews.get_active
+			
+			if params[:page].present?
+				reviews = reviews.offset(0).limit(params[:page]*num_per_page)
+			end
+			
+			reviews.order("created_at DESC")
+		end
   end
 end
