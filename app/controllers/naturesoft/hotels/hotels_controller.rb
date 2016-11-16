@@ -18,6 +18,8 @@ module Naturesoft
       # GET /reviews/list
       def reviews_list
         @hotel = Hotel.find(params[:id])
+        @reviews = @hotel.get_reviews(params)
+        render "_reviews_list", layout: nil
       end
     end
   end
