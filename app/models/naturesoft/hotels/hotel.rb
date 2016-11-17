@@ -234,5 +234,10 @@ module Naturesoft::Hotels
 			
 			reviews.order("created_at DESC")
 		end
+		
+		# get hotels by area
+		def self.get_by_areas(areas)
+			records = self.get_active
+		end
   end
 end

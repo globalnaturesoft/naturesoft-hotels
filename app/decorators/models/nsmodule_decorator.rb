@@ -34,5 +34,11 @@ Naturesoft::Nsmodule.class_eval do
         "menu_id" => nil,
       }
     },
+    "near_by_hotels" => {
+      "label" => "Near By Hotels",
+      "options" => {
+        "style" => "default",
+      }
+    },
   }
 end
