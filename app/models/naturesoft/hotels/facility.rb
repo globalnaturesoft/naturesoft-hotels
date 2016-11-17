@@ -55,5 +55,10 @@ module Naturesoft::Hotels
 			options += items.map { |c| {"id" => c.id, "text" => c.name} }
 			result = {"items" => options}
 		end
+    
+    # count hotels by facility
+    def hotels_count
+			self.hotels.uniq.count
+		end
   end
 end
