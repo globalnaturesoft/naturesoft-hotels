@@ -2,6 +2,7 @@ module Naturesoft::Hotels
   class Hotel < ApplicationRecord
 		mount_uploader :image, Naturesoft::Hotels::HotelUploader
 		validate :at_least_one_area, :at_least_one_label, :at_least_one_facility
+		after_save :update_cache_search
 		
     belongs_to :user
     has_many :rooms, dependent: :destroy, :inverse_of => :hotel
@@ -123,7 +124,10 @@ module Naturesoft::Hotels
 			records = self.get_active
 			# search keyword filter
 			if params[:keyword].present?
-				records = records.where("LOWER(CONCAT(naturesoft_hotels_hotels.name)) LIKE ?", "%#{params[:keyword].downcase.strip}%")
+				#records = records.where("LOWER(CONCAT(naturesoft_hotels_hotels.name)) LIKE ?", "%#{params[:keyword].downcase.strip}%")
+				params[:keyword].split(" ").each do |k|
+					records = records.where("LOWER(naturesoft_hotels_hotels.cache_search) LIKE ?", "%#{k.strip.downcase}%")
+				end
 			end
 			# area filter
 			if params[:area_id].present?
@@ -243,6 +247,16 @@ module Naturesoft::Hotels
 				area_ids += a.get_all_related_ids
 			end
 			records.joins(:areas).where(naturesoft_areas_areas: {id: area_ids}).uniq
+		end
+		
+		# update cache search
+		def update_cache_search
+			str = []
+			str << name.to_s.downcase.strip
+			str << from_per_night.to_s.downcase.strip
+			str << address.to_s.downcase.strip
+			
+			self.update_column(:cache_search, str.join(" ") + " " + str.join(" ").unaccent)
 		end
   end
 end
