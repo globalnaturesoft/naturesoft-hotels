@@ -103,7 +103,7 @@
                         <%= select_tag("hotel[label_ids][]",
                           selected,
                           {
-                            class: "select2-ajax",
+                            class: "select2-ajax required",
                             include_blank: "none",
                             multiple: "multiple",
                             "data-url": select2_backend_labels_path,
@@ -124,7 +124,7 @@
                         <%= select_tag("hotel[hotel_type_id]",
                           type_selected,
                           {
-                            class: "select2-ajax",
+                            class: "select2-ajax required",
                             include_blank: "none",
                             "data-url": select2_backend_hotel_types_path,
                           }
@@ -144,7 +144,7 @@
                         <%= select_tag("hotel[area_ids][]",
                           area_selected,
                           {
-                            class: "select2-ajax",
+                            class: "select2-ajax required",
                             include_blank: "none",
                             multiple: "multiple",
                             "data-url": naturesoft_areas.select2_backend_areas_path,
