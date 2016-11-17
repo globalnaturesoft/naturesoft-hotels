@@ -1,6 +1,6 @@
 <%
   options = nsmodule.get_options
-  hotel = Naturesoft::Hotels::Hotel.find(1)
+  hotel = Naturesoft::Hotels::Hotel.find(params[:hotel_id])
   hotels = Naturesoft::Hotels::Hotel.get_by_areas(hotel.areas)
 %>
 
