@@ -242,7 +242,7 @@ module Naturesoft::Hotels
 			areas.each do |a|
 				area_ids += a.get_all_related_ids
 			end
-			records.joins(:areas).where(naturesoft_areas_areas: {id: area_ids})
+			records.joins(:areas).where(naturesoft_areas_areas: {id: area_ids}).uniq
 		end
   end
 end
