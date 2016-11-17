@@ -238,6 +238,11 @@ module Naturesoft::Hotels
 		# get hotels by area
 		def self.get_by_areas(areas)
 			records = self.get_active
+			area_ids = []
+			areas.each do |a|
+				area_ids += a.get_all_related_ids
+			end
+			records.joins(:areas).where(naturesoft_areas_areas: {id: area_ids})
 		end
   end
 end

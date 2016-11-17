@@ -1,7 +1,7 @@
 <%
   options = nsmodule.get_options
   hotel = Naturesoft::Hotels::Hotel.find(params[:hotel_id])
-  hotels = Naturesoft::Hotels::Hotel.get_by_areas(hotel.areas)
+  hotels = Naturesoft::Hotels::Hotel.get_by_areas(hotel.areas).where.not(id: hotel.id)
 %>
 
 <%= render "naturesoft/"+nsmodule.engine_name+"/backend/nsmodules/"+nsmodule.module_name+"/templates/"+options["style"],
