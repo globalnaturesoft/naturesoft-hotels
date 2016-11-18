@@ -71,7 +71,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-2 control-label" ><%= t(:hotel) %> <span class='text-danger'>*</span></label>
+            <label class="col-md-2 control-label" ><%= t(:event_category) %> <span class='text-danger'>*</span></label>
             <div class="col-md-10">
               <div class="input-group">
                   <% selected_category = options_for_select([[event.event_category.name, event.event_category_id]], event.event_category_id) if event.event_category.present? %>
