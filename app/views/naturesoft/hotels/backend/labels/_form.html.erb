@@ -16,26 +16,6 @@
 <%= form_for([naturesoft_hotels, :backend, label], html: {class: "form-horizontal validate", multipart: true}) do |f| %>
     
     <div class="form-group">
-      <label class="col-md-2 control-label" ><%= t(:icon) %> <span class='text-danger'>*</span></label>
-      <div class="media no-margin-top col-md-10">
-        <div class="media-left">
-          <a href="#">
-            <% if label.icon.present? %>
-              <img src="<%= label.icon %>" style="width: 50px; height: 50px; border-radius: 2px;" alt="">
-            <% else %>
-              <img src="/backend/assets/images/placeholder.jpg" style="width: 50px; height: 50px; border-radius: 2px;" alt="">
-            <% end %>
-          </a>
-        </div>
-  
-        <div class="media-body">
-          <input type="file" name="label[icon]" class="file-styled previewable">
-          <span class="help-block">Accepted formats: gif, png, jpg.</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group">
         <label class="col-md-2 control-label" ><%= t(:name) %> <span class='text-danger'>*</span></label>
         <div class="col-md-10">
             <%= f.text_field :name, class: "form-control required" %>
@@ -45,7 +25,11 @@
     <div class="form-group">
         <label class="col-md-2 control-label" ><%= t(:html_class) %> <span class='text-danger'>*</span></label>
         <div class="col-md-10">
-            <%= f.text_field :html_class, class: "form-control required" %>
+            <select name="label[html_class]" class="select2">
+              <option <%= "selected" if label["html_class"] == "favorite" %> value="favorite"><%= t(:favorite) %></option>
+              <option <%= "selected" if label["html_class"] == "new" %> value="new"><%= t(:new) %></option>
+              <option <%= "selected" if label["html_class"] == "hot" %> value="hot"><%= t(:hot) %></option>
+            </select>
         </div>
     </div>
         

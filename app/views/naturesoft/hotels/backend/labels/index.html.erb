@@ -57,7 +57,6 @@
                         <th width="1%" class="check_all_list">
                             <input type="checkbox" class="styled">
                         </th>
-                        <th><%= t(:icon) %></th>
                         <th><%= t(:name) %></th>
                         <th class="text-center"><%= t(:creator) %></th>
                         <th><%= t(:created_at) %></th>
@@ -78,7 +77,6 @@
                                   value="<%= item.custom_order %>"
                                 />
                             </td>
-                            <td><%= image_tag(image_src(item.icon), size: "40x40", class: "img-rounded img-preview") %></td>
                             <td class="kq_search">
                               <strong><%= link_to item.name, naturesoft_hotels.edit_backend_label_path(item) %></strong>
                             </td>
